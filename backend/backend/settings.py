@@ -57,7 +57,7 @@ MIDDLEWARE = [
 # Cors settings
 
 CORS_ALLOWED_ORIGINS = [       # Allows access from the frontend
-    'http://localhost:3000',  
+    os.getenv('FRONTEND_URL','http://localhost:3000')
 ]
 
 ROOT_URLCONF = 'backend.urls'
