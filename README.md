@@ -13,7 +13,7 @@
         └───nihongo-jouzu-frontend
             └───package.json
         
-        
+1) Copy .env.example to .env       
 
 2) Create the python virtual environment
 
