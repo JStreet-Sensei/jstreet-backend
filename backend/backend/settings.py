@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders', # Add corsheaders to handle cross-origin requests
     'rest_framework',  #  Enables Django Rest Framework
+    'api',
 ]
 
 MIDDLEWARE = [

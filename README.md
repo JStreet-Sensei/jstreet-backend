@@ -1,38 +1,40 @@
 # How start
 
-1) Clone backend repository inside a folder
+1.  Clone backend repository inside a folder
 
-1) Clone the fronted repository inside the same root folder
+1.  Clone the fronted repository inside the same root folder
 
     Example:
-        ```
-        
-        projects
-        ├───nihongo-jouzu-backend
-        │   └───backend
-        └───nihongo-jouzu-frontend
-            └───package.json
-        
-1) Copy .env.example to .env       
+    ```
 
-2) Create the python virtual environment
+         projects
+         ├───nihongo-jouzu-backend
+         │   └───backend
+         └───nihongo-jouzu-frontend
+             └───package.json
 
-    ```python -m venv venv```
-3) Activate python virtual environment
-    
+
+1.  Copy .env.example to .env
+
+1.  Create the python virtual environment
+
+    `python -m venv venv`
+
+1.  Activate python virtual environment
+
     Windows
 
-    ```.\venv\Scripts\activate``` 
+    `.\venv\Scripts\activate`
 
     On Linux/macOS
 
-    ```source ./venv/bin/activate```
+    `source ./venv/bin/activate`
 
-4) Install libraries
+1.  Install libraries
 
-    ```pip install -r backend/requirements.txt```    
+    `pip install -r backend/requirements.txt`
 
-5) Run docker
+1.  Run docker
 
-    ```docker compose build```  
-    ```docker compose up```  
+    `docker compose build`  
+     `docker compose up`
