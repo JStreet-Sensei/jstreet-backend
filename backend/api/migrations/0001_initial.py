@@ -2,7 +2,6 @@
 
 from django.db import migrations, models
 
-
 class Migration(migrations.Migration):
 
     initial = True
@@ -15,10 +14,58 @@ class Migration(migrations.Migration):
             name='User',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('username', models.CharField(max_length=30)),
-                ('email', models.CharField(max_length=50)),
-                ('password_hash', models.CharField(max_length=30)),
-                ('phone_number', models.CharField()),
+                ('username', models.CharField(max_length=30, unique=True)),
+                ('email', models.EmailField(max_length=50, unique=True)),
+                ('password_hash', models.CharField(max_length=256)),
+                ('phone_number', models.CharField(max_length=15, blank=True, null=True)),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Content',
+            fields=[
+                ('content_id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('japanese_slang', models.TextField()),
+                ('formal_version', models.TextField()),
+                ('description', models.TextField(blank=True, null=True)),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='GameName',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('name', models.TextField()),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Lobby',
+            fields=[
+                ('game_id', models.IntegerField(primary_key=True, serialize=False)),
+                ('owner_user_id', models.ForeignKey(on_delete=models.CASCADE, to='your_app_name.User')),
+                ('date', models.DateTimeField()),
+                ('players', models.IntegerField()),
+                ('game_type', models.TextField()),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Score',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('user', models.ForeignKey(on_delete=models.CASCADE, to='your_app_name.User')),
+                ('game_id', models.IntegerField()),
+                ('score', models.IntegerField()),
+                ('date', models.DateTimeField()),
+            ],
+        ),
+        migrations.CreateModel(
+            name='WordsLearned',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('user_id', models.ForeignKey(on_delete=models.CASCADE, to='your_app_name.User')),
+                ('content_id', models.ForeignKey(on_delete=models.CASCADE, to='your_app_name.Content')),
             ],
         ),
     ]
