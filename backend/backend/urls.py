@@ -26,7 +26,8 @@ router = routers.DefaultRouter()
 urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
-    path('test/', views.send_test_data), # Link the view to a URL
+    # path('test/', views.send_test_data), # Link the view to a URL
+    path('api/', include('api.urls'))
 ]
 
 if settings.DEBUG:
