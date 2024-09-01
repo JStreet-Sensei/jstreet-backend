@@ -5,6 +5,9 @@
 # Perform database migration
 python manage.py migrate
 
+# Create default super user
+python manage.py createsuperuser --noinput
+
 # Collect static files
 python manage.py collectstatic --noinput
 
