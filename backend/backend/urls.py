@@ -27,7 +27,9 @@ urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
     # path('test/', views.send_test_data), # Link the view to a URL
-    path('api/', include('api.urls'))
+    path('api/', include('api.urls')),
+    path("api/auth/", include("dj_rest_auth.urls")),
+    path('api/auth/registration/', include('dj_rest_auth.registration.urls'))
 ]
 
 if settings.DEBUG:
