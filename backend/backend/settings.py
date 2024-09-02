@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+from datetime import timedelta
 import os
 from pathlib import Path
 
@@ -38,11 +39,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'corsheaders', # Add corsheaders to handle cross-origin requests
     'rest_framework',  #  Enables Django Rest Framework 
-    'backend',
+    "rest_framework.authtoken",
+    "rest_framework_simplejwt",
     'api',
+    # 'api.apps.ApiConfig',
+    'backend',
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",  # add if you want social authentication
+    "allauth.socialaccount.providers.google",
+    'dj_rest_auth',
+    "dj_rest_auth.registration",
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
@@ -55,13 +68,31 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # All auth middleware
+    'allauth.account.middleware.AccountMiddleware'
+    
 ]
 
 # Cors settings
-
-CORS_ALLOWED_ORIGINS = [       # Allows access from the frontend
-    os.getenv('FRONTEND_URL','http://localhost:3000')
+CORS_ALLOW_ALL_ORIGINS = True # If this is used then `CORS_ALLOWED_ORIGINS` will not have any effect
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    'http://192.168.10.89:3000',
+] # If this is used, then not need to use `CORS_ALLOW_ALL_ORIGINS = True`
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    'http://192.168.10.89:3000',
 ]
+
+# if DEBUG:
+#     CORS_ALLOW_ALL_ORIGINS = True
+#     CORS_ALLOWED_ORIGINS = ["*"]
+# else:
+#     CORS_ALLOWED_ORIGINS = [
+#         os.getenv('FRONTEND_URL','http://localhost:3000'),
+#         "http://localhost:3000",
+#         "http://127.0.0.1:3000",
+#     ]
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -143,3 +174,52 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Custom auth Usermodel
 AUTH_USER_MODEL = "api.User"
+
+# Auth
+
+# REST_AUTH = {
+#     'LOGIN_SERIALIZER': 'api.serializers.UserSerializer',
+#     'USE_JWT': True,
+# }
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ROTATE_REFRESH_TOKENS": False,
+    "BLACKLIST_AFTER_ROTATION": False,
+    "UPDATE_LAST_LOGIN": True,
+    "SIGNING_KEY": "complexsigningkey",  # generate a key and replace me
+    "ALGORITHM": "HS512",
+}
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ]
+}
+
+AUTHENTICATION_BACKENDS = [
+    'allauth.account.auth_backends.AuthenticationBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = "none"
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "APP": {
+            "client_id": os.getenv("GOOGLE_CLIENT_ID",""),  # replace me
+            "secret": os.getenv("GOOGLE_CLIENT_SECRET",""),        # replace me
+            "key": "",                               # leave empty
+        },
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        },
+        "VERIFIED_EMAIL": True,
+    },
+}
