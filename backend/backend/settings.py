@@ -172,9 +172,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Custom auth Usermodel
-AUTH_USER_MODEL = "api.User"
-
 # Auth
 
 # REST_AUTH = {
@@ -190,6 +187,8 @@ SIMPLE_JWT = {
     "UPDATE_LAST_LOGIN": True,
     "SIGNING_KEY": "complexsigningkey",  # generate a key and replace me
     "ALGORITHM": "HS512",
+    "JWT_AUTH_HTTPONLY": False,
+    
 }
 
 REST_FRAMEWORK = {

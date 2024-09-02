@@ -1,11 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User   
 
-class User(AbstractUser):
-    phone_number = models.CharField(max_length=30)
-
-    def __str__(self):
-        return self.username
 
 class Score(models.Model):
     user = models.ForeignKey(User, to_field='id', on_delete=models.CASCADE)
