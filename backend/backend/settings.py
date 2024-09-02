@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",  # add if you want social authentication
+    "allauth.socialaccount.providers.google",
 
 ]
 
@@ -173,3 +174,21 @@ REST_AUTH = {
 }
 
 ACCOUNT_EMAIL_VERIFICATION = "none"
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "APP": {
+            "client_id": os.getenv("GOOGLE_CLIENT_ID",""),  # replace me
+            "secret": os.getenv("GOOGLE_CLIENT_SECRET",""),        # replace me
+            "key": "",                               # leave empty
+        },
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        },
+        "VERIFIED_EMAIL": True,
+    },
+}
