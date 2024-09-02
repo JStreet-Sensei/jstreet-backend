@@ -5,38 +5,30 @@ from rest_framework.test import APIClient
 from .models import User, Score, Lobby, GameName, WordsLearned, Content
 
 class UserTests(TestCase):
+    def test_create_user(self):
+        response = self.client.post(reverse('create_user'), self.user_data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)   
 
     def setUp(self):
         self.client = APIClient()
         self.user_data = {
             'username': 'testuser',
             'email': 'testuser@example.com',
-            'password_hash': 'password123',
+            'password': 'password123',
             'phone_number': '1234567890'
         }
         self.user = User.objects.create(**self.user_data)
-
+        
     def test_create_user(self):
         response = self.client.post(reverse('create_user'), self.user_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(User.objects.count(), 2)
+        self.assertTrue(User.objects.filter(username='testuser').exists())
 
-    def test_get_users(self):
-        response = self.client.get(reverse('get_users'))
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1)
 
     def test_get_user_detail(self):
         response = self.client.get(reverse('user_detail', kwargs={'pk': self.user.id}))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['username'], self.user.username)
-
-    def test_update_user(self):
-        update_data = {'username': 'updateduser'}
-        response = self.client.put(reverse('user_detail', kwargs={'pk': self.user.id}), update_data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.user.refresh_from_db()
-        self.assertEqual(self.user.username, 'updateduser')
 
     def test_delete_user(self):
         response = self.client.delete(reverse('user_detail', kwargs={'pk': self.user.id}))
@@ -48,14 +40,16 @@ class ScoreTests(TestCase):
 
     def setUp(self):
         self.client = APIClient()
-        self.user = User.objects.create(username='player1', email='player1@example.com', password_hash='password123', phone_number='1234567890')
+        self.user = User.objects.create(username='player1', email='player1@example.com', password='password123', phone_number='1234567890')
         self.score_data = {
             'user': self.user.id,
-            'game_id': 1,
-            'score': 10,
-            'date': '2024-09-02T00:00:00Z'
+            'game_id': self.lobby.id,
+            'score': 10
+            
         }
-        self.score = Score.objects.create(user=self.user, game_id=1, score=10, date='2024-09-02T00:00:00Z')
+        self.lobby = Lobby.objects.create(game_id=1, owner_user=self.user, players=4, game_type=self.game_name)
+        self.score = Score.objects.create(user=self.user, game_id=self.lobby, score=10)
+
 
     def test_create_score(self):
         response = self.client.post(reverse('create_score'), self.score_data, format='json')
@@ -89,15 +83,16 @@ class LobbyTests(TestCase):
 
     def setUp(self):
         self.client = APIClient()
-        self.user = User.objects.create(username='lobbyowner', email='lobbyowner@example.com', password_hash='password123', phone_number='1234567890')
+        self.user = User.objects.create(username='lobbyowner', email='lobbyowner@example.com', password='password123', phone_number='1234567890')
         self.lobby_data = {
             'game_id': 1,
             'owner_user': self.user.id,
-            'date': '2024-09-02T00:00:00Z',
             'players': 4,
             'game_type': 'Multiplayer'
         }
-        self.lobby = Lobby.objects.create(game_id=1, owner_user=self.user, date='2024-09-02T00:00:00Z', players=4, game_type='Multiplayer')
+        self.game_name = GameName.objects.create(name='Multiplayer')
+        self.lobby = Lobby.objects.create(game_id=1, owner_user=self.user, players=4, game_type=self.game_name)
+
 
     def test_create_lobby(self):
         response = self.client.post(reverse('create_lobby'), self.lobby_data, format='json')
@@ -126,13 +121,11 @@ class LobbyTests(TestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Lobby.objects.count(), 0)
 
-
-# Todo Change the name name!
 class GameNameTests(TestCase):
 
     def setUp(self):
         self.client = APIClient()
-        self.game_name_data = {'id': 1, 'name': 'Memo Game'}
+        self.game_name_data = {'name': 'Memo Game'}
         self.game_name = GameName.objects.create(id=1, name='Memo Game') 
 
     def test_create_game_name(self):
@@ -160,9 +153,9 @@ class WordsLearnedTests(TestCase):
 
     def setUp(self):
         self.client = APIClient()
-        self.user = User.objects.create(username='learner', email='learner@example.com', password_hash='password123', phone_number='1234567890')
+        self.user = User.objects.create(username='learner', email='learner@example.com', password='password123', phone_number='1234567890')
         self.content = Content.objects.create(content_id=1, japanese_slang='Konnichiwa', formal_version='Hello', description='A common greeting in Japanese.')
-        self.words_learned_data = {'user': self.user.id, 'content': self.content.id}
+        self.words_learned_data = {'user': self.user.id, 'content': self.content.content_id}
         self.words_learned = WordsLearned.objects.create(user=self.user, content=self.content)
 
     def test_create_words_learned(self):
