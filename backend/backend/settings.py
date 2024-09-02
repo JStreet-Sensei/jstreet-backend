@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+from datetime import timedelta
 import os
 from pathlib import Path
 
@@ -38,8 +39,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Third party
     'corsheaders', # Add corsheaders to handle cross-origin requests
     'rest_framework',  #  Enables Django Rest Framework 
+    'rest_framework.authtoken',
+    'django.contrib.sites',
+
+    # Authentication
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
+    # App
     'backend',
     'api',
 ]
@@ -55,6 +70,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # All auth middleware
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 # Cors settings
@@ -64,6 +81,19 @@ CORS_ALLOWED_ORIGINS = [       # Allows access from the frontend
 ]
 
 ROOT_URLCONF = 'backend.urls'
+
+# set up the authentication classes
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.IsAuthenticated",
+    ),
+
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        'rest_framework_simplejwt.authentication.JWTAuthentication', 
+    ),
+}
 
 TEMPLATES = [
     {
@@ -142,4 +172,55 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Custom auth Usermodel
-AUTH_USER_MODEL = "api.User"
+AUTH_USER_MODEL = "api.CustomUserModel"
+
+# Auth settings
+
+JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+# we are turning off email verification for now
+SOCIALACCOUNT_EMAIL_VERIFICATION = "none"
+SOCIALACCOUNT_EMAIL_REQUIRED = False
+
+SITE_ID = 1  # https://dj-rest-auth.readthedocs.io/en/latest/installation.html#registration-optional
+REST_USE_JWT = True # use JSON Web Tokens
+# JWT_AUTH_COOKIE = "nextjsdrf-access-token"
+# JWT_AUTH_REFRESH_COOKIE = "nextjsdrf-refresh-token"
+# JWT_AUTH_SAMESITE = "none"
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True, 
+    'UPDATE_LAST_LOGIN': True,
+    "USER_ID_FIELD": "userId",  # for the custom user model
+    "USER_ID_CLAIM": "user_id",
+    "SIGNING_KEY": JWT_SECRET_KEY
+}
+
+# We need to specify the exact serializer as well for dj-rest-auth, otherwise it will end up shooting itself
+# in the foot and me in the head
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'nextjsdrfauth.serializers.CustomUserModelSerializer'
+}
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+]

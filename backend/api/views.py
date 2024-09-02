@@ -1,19 +1,32 @@
+import os
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .models import User, Score, Lobby, GameName, WordsLearned, Content
-from .serializers import UserSerializer, ScoreSerializer, LobbySerializer, GameNameSerializer, WordsLearnedSerializer, ContentSerializer
+from .models import CustomUserModel, Score, Lobby, GameName, WordsLearned, Content
+from .serializers import CustomUserModelSerializer, ScoreSerializer, LobbySerializer, GameNameSerializer, WordsLearnedSerializer, ContentSerializer
+
+# Auth import
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+from dj_rest_auth.registration.views import SocialLoginView
+from allauth.socialaccount.providers.oauth2.client import OAuth2Client 
+
+# Login views
+class GoogleLoginView(SocialLoginView):
+  authentication_classes = [] # disable authentication, make sure to override `allowed origins` in settings.py in production!
+  adapter_class = GoogleOAuth2Adapter
+  callback_url = os.getenv("FRONTEND_URL")  # frontend application url
+  client_class = OAuth2Client
 
 # User views
 @api_view(['GET'])
 def get_users(request):
-    users = User.objects.all()
-    serializer = UserSerializer(users, many=True)
+    users = CustomUserModel.objects.all()
+    serializer = CustomUserModelSerializer(users, many=True)
     return Response(serializer.data)
 
 @api_view(['POST'])
 def create_user(request):
-    serializer = UserSerializer(data=request.data)
+    serializer = CustomUserModelSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -22,16 +35,16 @@ def create_user(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 def user_detail(request, pk):
     try:
-        user = User.objects.get(pk=pk)
-    except User.DoesNotExist:
+        user = CustomUserModel.objects.get(pk=pk)
+    except CustomUserModel.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = UserSerializer(user)
+        serializer = CustomUserModelSerializer(user)
         return Response(serializer.data)
 
     elif request.method == 'PUT':
-        serializer = UserSerializer(user, data=request.data)
+        serializer = CustomUserModelSerializer(user, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

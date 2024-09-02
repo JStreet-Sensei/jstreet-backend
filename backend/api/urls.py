@@ -7,8 +7,12 @@ from .views import (
     get_words_learned, create_words_learned, words_learned_detail,
     get_content, create_content, content_detail
 )
+from .views import GoogleLoginView
 
 urlpatterns = [
+    # Auth
+    path("google/", GoogleLoginView.as_view(), name = "google"),
+
     # User URLs
     path('users/', get_users, name='get_users'),
     path('users/create', create_user, name='create_user'),
