@@ -39,9 +39,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders', # Add corsheaders to handle cross-origin requests
-    'rest_framework',  #  Enables Django Rest Framework 
+    'rest_framework',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    "dj_rest_auth.registration",
     'backend',
     'api',
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",  # add if you want social authentication
+    "allauth.socialaccount.providers.google",
+
 ]
 
 MIDDLEWARE = [
@@ -55,10 +63,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 # Cors settings
-
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [       # Allows access from the frontend
     os.getenv('FRONTEND_URL','http://localhost:3000')
 ]
@@ -141,5 +151,45 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Custom auth Usermodel
-AUTH_USER_MODEL = "api.User"
+# Auth
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+    )
+}
+
+from datetime import timedelta
+
+# djangorestframework-simplejwt
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+}
+
+# dj-rest-auth
+REST_AUTH = {
+    "USE_JWT": True,
+    "JWT_AUTH_COOKIE": "_auth",  # Name of access token cookie
+    "JWT_AUTH_REFRESH_COOKIE": "_refresh", # Name of refresh token cookie
+    "JWT_AUTH_HTTPONLY": False,  # Makes sure refresh token is sent
+}
+
+ACCOUNT_EMAIL_VERIFICATION = "none"
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "APP": {
+            "client_id": os.getenv("GOOGLE_CLIENT_ID",""),  # replace me
+            "secret": os.getenv("GOOGLE_CLIENT_SECRET",""),        # replace me
+            "key": "",                               # leave empty
+        },
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        },
+        "VERIFIED_EMAIL": True,
+    },
+}

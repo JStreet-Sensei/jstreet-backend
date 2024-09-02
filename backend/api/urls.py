@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (
-    get_users, create_user, user_detail,
+    GoogleLogin, get_users, create_user, user_detail,
     get_scores, create_score, score_detail,
     get_lobbies, create_lobby, lobby_detail,
     get_game_names, create_game_name, game_name_detail,
@@ -9,6 +9,9 @@ from .views import (
 )
 
 urlpatterns = [
+
+    path("google/", GoogleLogin.as_view(), name="google_login"),
+
     # User URLs
     path('users/', get_users, name='get_users'),
     path('users/create', create_user, name='create_user'),

@@ -4,6 +4,16 @@ from rest_framework import status
 from .models import User, Score, Lobby, GameName, WordsLearned, Content
 from .serializers import UserSerializer, ScoreSerializer, LobbySerializer, GameNameSerializer, WordsLearnedSerializer, ContentSerializer
 
+from dj_rest_auth.registration.views import SocialLoginView
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+from allauth.socialaccount.providers.oauth2.client import OAuth2Client
+
+# Google
+class GoogleLogin(SocialLoginView):
+    adapter_class = GoogleOAuth2Adapter
+    callback_url = "http://127.0.0.1:3000/"
+    client_class = OAuth2Client
+
 # User views
 @api_view(['GET'])
 def get_users(request):
