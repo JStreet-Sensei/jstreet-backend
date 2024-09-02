@@ -42,8 +42,13 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'dj_rest_auth',
+    "dj_rest_auth.registration",
     'backend',
     'api',
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",  # add if you want social authentication
+
 ]
 
 MIDDLEWARE = [
@@ -57,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 # Cors settings
@@ -165,3 +171,5 @@ REST_AUTH = {
     "JWT_AUTH_REFRESH_COOKIE": "_refresh", # Name of refresh token cookie
     "JWT_AUTH_HTTPONLY": False,  # Makes sure refresh token is sent
 }
+
+ACCOUNT_EMAIL_VERIFICATION = "none"
