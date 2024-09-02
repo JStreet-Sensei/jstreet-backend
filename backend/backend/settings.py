@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ow*9q(tpbs9@kvkn806$ufbdo7m2b)3vx^nsvkw_u6ga_v%j&@
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ["http://localhost", "https://"+os.getenv("RAILWAY_PUBLIC_DOMAIN")]
+CSRF_TRUSTED_ORIGINS = ["http://localhost", "https://"+os.getenv("RAILWAY_PUBLIC_DOMAIN","*")]
 
 
 # Application definition
@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders', # Add corsheaders to handle cross-origin requests
     'rest_framework',  #  Enables Django Rest Framework 
-    'backend'
+    'backend',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +140,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Custom auth Usermodel
+AUTH_USER_MODEL = "api.User"
