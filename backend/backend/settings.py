@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders', # Add corsheaders to handle cross-origin requests
     'rest_framework',  #  Enables Django Rest Framework 
-    'backend'
+    'backend',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +140,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Custom auth Usermodel
+AUTH_USER_MODEL = "api.User"
