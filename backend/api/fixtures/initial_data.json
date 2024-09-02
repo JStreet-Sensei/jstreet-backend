@@ -1,0 +1,161 @@
+[
+    {
+        "model": "backend.content",
+        "pk": 1,
+        "fields": {
+            "japanese_slang": "やばい",
+            "formal_version": "危ない (あぶない)",
+            "description": "This slang can mean something is dangerous or amazing depending on the context."
+        }
+    },
+    {
+        "model": "backend.content",
+        "pk": 2,
+        "fields": {
+            "japanese_slang": "うざい",
+            "formal_version": "煩わしい (わずらわしい)",
+            "description": "This slang means someone or something is annoying or troublesome."
+        }
+    },
+    {
+        "model": "backend.content",
+        "pk": 3,
+        "fields": {
+            "japanese_slang": "ちょい待って！ (ちょいまって！)",
+            "formal_version": "ちょっと待って。 (ちょっとまって。)",
+            "description": "This slang means 'wait a bit' or 'hold on.' The polite way is '少々お待ちください。 (しょうしょうおまちください。)'"
+        }
+    },
+    {
+        "model": "backend.content",
+        "pk": 4,
+        "fields": {
+            "japanese_slang": "ぶっちゃけて言うと、... (ぶっちゃけていうと、...)",
+            "formal_version": "正直に言うと、... (しょうじきにいうと、...)",
+            "description": "This slang is used to say 'to be honest' or 'to speak frankly.' It’s the same as the polite version."
+        }
+    },
+    {
+        "model": "backend.content",
+        "pk": 5,
+        "fields": {
+            "japanese_slang": "えぐい ",
+            "formal_version": "ひどい ",
+            "description": "This slang can be used to describe something awful or extreme. There’s no polite equivalent."
+        }
+    },
+    {
+        "model": "backend.content",
+        "pk": 6,
+        "fields": {
+            "japanese_slang": "ウケる！ (うける！)",
+            "formal_version": "面白いですね。 (おもしろいですね。)",
+            "description": "This slang is used when something is funny. The polite way to say it is 'とても興味深いです。 (とてもきょうみぶかいです。)'"
+        }
+    },
+    {
+        "model": "backend.content",
+        "pk": 7,
+        "fields": {
+            "japanese_slang": "調子どう？ (ちょうしどう？)",
+            "formal_version": "How’s it hanging?",
+            "description": "This is an informal way to ask 'How are you?' in Japanese."
+        }
+    },
+    {
+        "model": "backend.content",
+        "pk": 8,
+        "fields": {
+            "japanese_slang": "ごめんちゃい / ごめんくさい / めんごめんご",
+            "formal_version": "Slangy Apologies",
+            "description": "These are all slangy forms of ごめんなさい (I’m sorry). Really, if you want to apologize properly, you should say ごめんなさい. But if what you did wasn’t that serious—or if you want to sound cute—then the slangier forms will work. ごめんちゃい and ごめんくさい are sort of fun and light-hearted. めんごめんご will make most people cringe when they hear it. They might just forgive you out of embarrassment.Of course, there’s also a “cool guy” way to apologize. Just say わりぃーね which means “my bad."
+        }
+    },
+    {
+        "model": "backend.content",
+        "pk": 9,
+        "fields": {
+            "japanese_slang": "奴ら (やつら)",
+            "formal_version": "Very Informal 'Them'",
+            "description": "This term is a very informal way to refer to 'them' in Japanese."
+        }
+    },
+    {
+        "model": "backend.content",
+        "pk": 10,
+        "fields": {
+            "japanese_slang": "一足す一は？ (いちたすいちは？)",
+            "formal_version": "Say Cheese?",
+            "description": "This phrase is used when taking a photo, similar to saying 'Cheese!' in English."
+        }
+    },
+    {
+        "model": "backend.gamename",
+        "pk": 1,
+        "fields": {
+            "name": "formal or informal"
+        }
+    },
+    {
+        "model": "backend.gamename",
+        "pk": 2,
+        "fields": {
+            "name": "memory game"
+        }
+    },
+    {
+        "model": "backend.user",
+        "pk": 1,
+        "fields": {
+            "username": "user",
+            "email": "user@gmail.com",
+            "password_hash": "password",
+            "phone_number": "1234567890"
+        }
+    },
+    {
+        "model": "backend.user",
+        "pk": 2,
+        "fields": {
+            "username": "user2",
+            "email": "user2@gmail.com",
+            "password_hash": "password",
+            "phone_number": "0987654321"
+        }
+    },
+    {
+        "model": "backend.lobby",
+        "pk": 1,
+        "fields": {
+            "date": "2024-08-29T14:30:00Z",
+            "game_type": 1,
+            "owner": 1,
+            "players": [1, 2]
+        }
+    },
+    {
+        "model": "backend.score",
+        "pk": 1,
+        "fields": {
+            "date": "2024-08-29T14:45:00Z",
+            "game_id": 1,
+            "user": 1
+        }
+    },
+    {
+        "model": "backend.wordslearned",
+        "pk": 1,
+        "fields": {
+            "content": 1,
+            "user": 1
+        }
+    },
+    {
+        "model": "backend.wordslearned",
+        "pk": 2,
+        "fields": {
+            "content": 2,
+            "user": 2
+        }
+    }
+]
