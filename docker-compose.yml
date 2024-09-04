@@ -16,12 +16,12 @@ services:
   frontend:
     build:
       context: ../nihongo-jouzu-frontend
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-local
     ports:
       - '3000:3000'
     volumes:
-      - ../nihongo-jouzu-frontend:/app/frontend
-      - node_modules:/app/frontend/node_modules
+      - ../nihongo-jouzu-frontend:/app
+      - node_modules:/app/node_modules
     depends_on:
       - backend
     networks:
