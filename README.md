@@ -38,3 +38,34 @@
 
     `docker compose build`  
      `docker compose up`
+
+
+
+# Error Reference
+
+## Docker
+
+### Cannot sign in
+In the case you can't run only with docker, you might need to define your ip adress correctly.
+Run this command and put your ip to env files for both frontend and backend.
+
+`Get-NetIPAddress`
+
+example result
+```bash
+IPAddress         : 172.17.0.1
+InterfaceIndex    : 48
+InterfaceAlias    : vEthernet (WSL (Hyper-V firewall))
+AddressFamily     : IPv4
+Type              : Unicast
+PrefixLength      : 20
+PrefixOrigin      : Manual
+SuffixOrigin      : Manual
+AddressState      : Preferred
+ValidLifetime     :
+PreferredLifetime :
+SkipAsSource      : False
+PolicyStore       : ActiveStore
+```
+The result of this command doesn't work well. Still searching.
+`docker inspect  -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 6b6cd1c04cf416cdfaf8d127bb1d507c6eed495058f2c22f0e3af12fd25fa47f`
