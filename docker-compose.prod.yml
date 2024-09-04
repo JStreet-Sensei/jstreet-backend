@@ -16,29 +16,21 @@ services:
           - ${PROJECT_NAME}_db.local
   frontend:
     container_name: frontend
-    build:
+    build: 
       context: ../nihongo-jouzu-frontend
       dockerfile: Dockerfile
-      target: dev
-    restart: always
-    command: npm run dev
+    restart: always #change if you don't want your container restarting
     environment:
-      - NODE_ENV=development 
-      #if you’re using Windows, you may need to uncomment the next line - Sol from @Kobe E
-      - WATCHPACK_POLLING=true
+      - NODE_ENV=production
     ports:
-      - '3000:3000'
-    volumes:
-      - ../nihongo-jouzu-frontend:/app
-      - ../nihongo-jouzu-frontend/node_modules:/app/node_modules
-      - /app/.next
+      - 3000:3000
     depends_on:
       - backend
     networks:
       custom_network:
         aliases:
           - ${PROJECT_NAME}_react.local
-  backend: 
+  backend:
     container_name: backend
     build: 
       context: ./backend
