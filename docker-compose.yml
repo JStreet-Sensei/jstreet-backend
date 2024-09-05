@@ -22,6 +22,9 @@ services:
       target: dev
     restart: always
     command: npm run dev
+    env_file:
+      - path: ../nihongo-jouzu-frontend/.env
+        required: true
     environment:
       - NODE_ENV=development 
       #if you’re using Windows, you may need to uncomment the next line - Sol from @Kobe E
