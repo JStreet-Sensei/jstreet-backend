@@ -48,6 +48,10 @@
 
     ` docker exec -it "container name or id" python manage.py loaddata api/fixtures/initial_data.json`
 
+# Testing
+Basic knowledge of python testing.
+https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Testing
+
 # Error Reference
 
 ## Docker
