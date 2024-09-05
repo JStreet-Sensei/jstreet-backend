@@ -39,7 +39,9 @@
     `docker compose build`  
      `docker compose up`
 
+1. Seeds data into Database
 
+    ` docker exec -it "container name or id" python manage.py loaddata api/fixtures/initial_data.json`
 
 # Error Reference
 
