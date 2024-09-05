@@ -36,8 +36,13 @@
 
 1.  Run docker
 
-    `docker compose build`  
-     `docker compose up`
+   Build  ```docker compose build```
+     
+   Run  ```docker compose up```
+   
+   Build and run  ```docker compose up --build```
+   
+   Build and run production  ```docker compose -f "docker-compose.prod.yml" up -d --build```
 
 
 
