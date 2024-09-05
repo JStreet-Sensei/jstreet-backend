@@ -1,15 +1,15 @@
 [
     {
-        "model": "backend.content",
+        "model": "api.content",
         "pk": 1,
         "fields": {
             "japanese_slang": "やばい",
             "formal_version": "危ない (あぶない)",
-            "description": "This slang can mean something is dangerous or amazing depending on the context."
+            "description": "This slang can mean something is dangerous or amazing depending on the context. This slang is heavily influenced by the context."
         }
     },
     {
-        "model": "backend.content",
+        "model": "api.content",
         "pk": 2,
         "fields": {
             "japanese_slang": "うざい",
@@ -18,7 +18,7 @@
         }
     },
     {
-        "model": "backend.content",
+        "model": "api.content",
         "pk": 3,
         "fields": {
             "japanese_slang": "ちょい待って！ (ちょいまって！)",
@@ -27,7 +27,7 @@
         }
     },
     {
-        "model": "backend.content",
+        "model": "api.content",
         "pk": 4,
         "fields": {
             "japanese_slang": "ぶっちゃけて言うと、... (ぶっちゃけていうと、...)",
@@ -36,7 +36,7 @@
         }
     },
     {
-        "model": "backend.content",
+        "model": "api.content",
         "pk": 5,
         "fields": {
             "japanese_slang": "えぐい ",
@@ -45,7 +45,7 @@
         }
     },
     {
-        "model": "backend.content",
+        "model": "api.content",
         "pk": 6,
         "fields": {
             "japanese_slang": "ウケる！ (うける！)",
@@ -54,7 +54,7 @@
         }
     },
     {
-        "model": "backend.content",
+        "model": "api.content",
         "pk": 7,
         "fields": {
             "japanese_slang": "調子どう？ (ちょうしどう？)",
@@ -63,7 +63,7 @@
         }
     },
     {
-        "model": "backend.content",
+        "model": "api.content",
         "pk": 8,
         "fields": {
             "japanese_slang": "ごめんちゃい / ごめんくさい / めんごめんご",
@@ -72,7 +72,7 @@
         }
     },
     {
-        "model": "backend.content",
+        "model": "api.content",
         "pk": 9,
         "fields": {
             "japanese_slang": "奴ら (やつら)",
@@ -81,7 +81,7 @@
         }
     },
     {
-        "model": "backend.content",
+        "model": "api.content",
         "pk": 10,
         "fields": {
             "japanese_slang": "一足す一は？ (いちたすいちは？)",
@@ -90,41 +90,39 @@
         }
     },
     {
-        "model": "backend.gamename",
+        "model": "api.gamename",
         "pk": 1,
         "fields": {
             "name": "formal or informal"
         }
     },
     {
-        "model": "backend.gamename",
+        "model": "api.gamename",
         "pk": 2,
         "fields": {
             "name": "memory game"
         }
     },
     {
-        "model": "backend.user",
+        "model": "auth.user",
         "pk": 1,
         "fields": {
             "username": "user",
             "email": "user@gmail.com",
-            "password_hash": "password",
-            "phone_number": "1234567890"
+            "password": "password"
         }
     },
     {
-        "model": "backend.user",
+        "model": "auth.user",
         "pk": 2,
         "fields": {
             "username": "user2",
             "email": "user2@gmail.com",
-            "password_hash": "password",
-            "phone_number": "0987654321"
+            "password": "password"
         }
     },
     {
-        "model": "backend.lobby",
+        "model": "api.lobby",
         "pk": 1,
         "fields": {
             "date": "2024-08-29T14:30:00Z",
@@ -134,16 +132,17 @@
         }
     },
     {
-        "model": "backend.score",
+        "model": "api.score",
         "pk": 1,
         "fields": {
             "date": "2024-08-29T14:45:00Z",
             "game_id": 1,
-            "user": 1
+            "user": 1,
+            "score":10
         }
     },
     {
-        "model": "backend.wordslearned",
+        "model": "api.wordslearned",
         "pk": 1,
         "fields": {
             "content": 1,
@@ -151,7 +150,7 @@
         }
     },
     {
-        "model": "backend.wordslearned",
+        "model": "api.wordslearned",
         "pk": 2,
         "fields": {
             "content": 2,

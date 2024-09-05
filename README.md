@@ -44,7 +44,9 @@
    
    Build and run production  ```docker compose -f "docker-compose.prod.yml" up -d --build```
 
+1. Seeds data into Database
 
+    ` docker exec -it "container name or id" python manage.py loaddata api/fixtures/initial_data.json`
 
 # Error Reference
 
