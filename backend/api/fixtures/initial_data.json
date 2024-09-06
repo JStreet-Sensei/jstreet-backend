@@ -5,6 +5,7 @@
         "fields": {
             "japanese_slang": "やばい",
             "formal_version": "危ない (あぶない)",
+            "english_slang": "Look out!",
             "description": "This slang can mean something is dangerous or amazing depending on the context. This slang is heavily influenced by the context."
         }
     },
@@ -14,6 +15,7 @@
         "fields": {
             "japanese_slang": "うざい",
             "formal_version": "煩わしい (わずらわしい)",
+            "english_slang": "Bothering",
             "description": "This slang means someone or something is annoying or troublesome."
         }
     },
@@ -23,6 +25,7 @@
         "fields": {
             "japanese_slang": "ちょい待って！ (ちょいまって！)",
             "formal_version": "ちょっと待って。 (ちょっとまって。)",
+            "english_slang": "Wait!",
             "description": "This slang means 'wait a bit' or 'hold on.' The polite way is '少々お待ちください。 (しょうしょうおまちください。)'"
         }
     },
@@ -32,6 +35,7 @@
         "fields": {
             "japanese_slang": "ぶっちゃけて言うと、... (ぶっちゃけていうと、...)",
             "formal_version": "正直に言うと、... (しょうじきにいうと、...)",
+            "english_slang": "To be honest,",
             "description": "This slang is used to say 'to be honest' or 'to speak frankly.' It’s the same as the polite version."
         }
     },
@@ -41,6 +45,7 @@
         "fields": {
             "japanese_slang": "えぐい ",
             "formal_version": "ひどい ",
+            "english_slang": "Teribble",
             "description": "This slang can be used to describe something awful or extreme. There’s no polite equivalent."
         }
     },
@@ -50,6 +55,7 @@
         "fields": {
             "japanese_slang": "ウケる！ (うける！)",
             "formal_version": "面白いですね。 (おもしろいですね。)",
+            "english_slang": "Funny",
             "description": "This slang is used when something is funny. The polite way to say it is 'とても興味深いです。 (とてもきょうみぶかいです。)'"
         }
     },
@@ -58,7 +64,8 @@
         "pk": 7,
         "fields": {
             "japanese_slang": "調子どう？ (ちょうしどう？)",
-            "formal_version": "How’s it hanging?",
+            "formal_version": "最近どうですか？（さいきんどうですか）",
+            "english_slang": "How’s it hanging?",
             "description": "This is an informal way to ask 'How are you?' in Japanese."
         }
     },
@@ -66,9 +73,10 @@
         "model": "api.content",
         "pk": 8,
         "fields": {
-            "japanese_slang": "ごめんちゃい / ごめんくさい / めんごめんご",
-            "formal_version": "Slangy Apologies",
-            "description": "These are all slangy forms of ごめんなさい (I’m sorry). Really, if you want to apologize properly, you should say ごめんなさい. But if what you did wasn’t that serious—or if you want to sound cute—then the slangier forms will work. ごめんちゃい and ごめんくさい are sort of fun and light-hearted. めんごめんご will make most people cringe when they hear it. They might just forgive you out of embarrassment.Of course, there’s also a “cool guy” way to apologize. Just say わりぃーね which means “my bad."
+            "japanese_slang": "ごめん",
+            "formal_version": "すみません。",
+            "english_slang": "Slangy Apologies",
+            "description": "This is a shorter form of ごめんなさい (I’m sorry). You can use this slang among friends. Your boss can use this, but you can't use when you'll talk with the boss. Really, if you want to apologize properly, you should say ごめんなさい or すみません. The most sincerely and often used version is 申し訳ございません or 申し訳ないです. The highest version is 誠に申し訳ございませんでした. This version is used in press conference."
         }
     },
     {
@@ -76,7 +84,8 @@
         "pk": 9,
         "fields": {
             "japanese_slang": "奴ら (やつら)",
-            "formal_version": "Very Informal 'Them'",
+            "formal_version": "彼ら（かれら）",
+            "english_slang": "Very Informal 'Them'",
             "description": "This term is a very informal way to refer to 'them' in Japanese."
         }
     },
@@ -85,7 +94,8 @@
         "pk": 10,
         "fields": {
             "japanese_slang": "一足す一は？ (いちたすいちは？)",
-            "formal_version": "Say Cheese?",
+            "formal_version": "撮ります（とります）",
+            "english_slang": "Say Cheese?",
             "description": "This phrase is used when taking a photo, similar to saying 'Cheese!' in English."
         }
     },
@@ -128,7 +138,10 @@
             "date": "2024-08-29T14:30:00Z",
             "game_type": 1,
             "owner": 1,
-            "players": [1, 2]
+            "players": [
+                1,
+                2
+            ]
         }
     },
     {
@@ -138,7 +151,7 @@
             "date": "2024-08-29T14:45:00Z",
             "game_id": 1,
             "user": 1,
-            "score":10
+            "score": 10
         }
     },
     {
