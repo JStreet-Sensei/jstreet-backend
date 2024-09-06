@@ -52,6 +52,13 @@
 Basic knowledge of python testing.
 https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Testing
 
+Test URL example.
+http://localhost:8000/api/quick-answer-game/game-contents
+
+Run specific test case
+`docker exec -it "container name or id" python manage.py test api.tests.QuickAnswerGameTests.test_quick_answer_game_content`
+
+
 # Commands
 ## Migrations
 * show all migrations
@@ -91,3 +98,14 @@ PolicyStore       : ActiveStore
 ```
 The result of this command doesn't work well. Still searching.
 `docker inspect  -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 6b6cd1c04cf416cdfaf8d127bb1d507c6eed495058f2c22f0e3af12fd25fa47f`
+
+
+# Learning
+Django model
+https://www.geeksforgeeks.org/django-basic-app-model-makemigrations-and-migrate/
+
+Django rollback migration
+https://sentry.io/answers/django-revert-last-migration/
+
+Merge conflicts in migration
+https://www.algotech.solutions/blog/python/django-migrations-and-how-to-manage-conflicts/
