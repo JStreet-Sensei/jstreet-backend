@@ -10,6 +10,7 @@ from .serializers import (
     WordsLearnedSerializer,
     ContentSerializer,
 )
+import random
 
 from dj_rest_auth.registration.views import SocialLoginView
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
@@ -281,8 +282,8 @@ def content_detail(request, pk):
 def quick_answer_game_content(request):
     """_summary_
     Get all data for a quick answer game. All problems, all deals for each users.
-    Dictionary is like : {problems:[{content_id:..., japanese_slang}],
-    deal:[[slang1, slang2, slang2], [slang1, slang2, slang3], ...]}
+    Dictionary is like : {problems:[{content_id:..., japanese_slang}, ...],
+    deals:[[slang1, slang2, slang2], [slang1, slang2, slang3], ...]}
 
     Args:
         request (_type_): _description_
@@ -290,8 +291,54 @@ def quick_answer_game_content(request):
     Returns:
         _type_: _description_
     """
-    if request.method != "GET":
+    if request.method == "GET":
+        # process
+        # Get random 10 contents
+        # Create cards based on content
+        # serializer = ContentSerializer(content, data=)
+        CONTENT_KEYS = list(Content.objects.values_list("content_id", flat=True).order_by(
+            "content_id"
+        ))
+        content_keys_copied = CONTENT_KEYS.copy()
+        problem_keys = []
+        for i in range(10):
+            problem_keys.append(random.choice(content_keys_copied))
+            content_keys_copied.remove(problem_keys[len(problem_keys) - 1])
+        problems = []
+        for i in problem_keys:
+            content = Content.objects.get(pk=i)
+            # serializer = ContentSerializer(content)
+            problems.append(ContentSerializer(content).data)
+            # problems.append(ContentSerializer(Content.objects.get(pk=i)))
+
+        print(problems[0])
+        
+        #choose  fake answer based on correct answer
+        
+        deals=[]
+        for i in problems:
+            print("i is :",i)
+            fakes_id = []
+            fake_range = CONTENT_KEYS
+            fake_range.remove(i["content_id"])
+            random.shuffle(fake_range)
+            fakes_id.append([fake_range[:2]])
+            deal = []
+            for k in fakes_id:
+                content = Content.objects.get(pk=k)
+                deal.append(ContentSerializer(content).data)
+            deals.append(deal)
+        print(deals)
+        
+                
+            
+            
+
+        # return Response(status=status.HTTP_200_OK)
+        return Response(data={"problems":problems, "deals":deals},status=status.HTTP_200_OK)
+    else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(["POST"])
 def quick_answer_game_asnswer(request):
@@ -311,5 +358,3 @@ def quick_answer_game_asnswer(request):
         print("test")
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
-    
-    
