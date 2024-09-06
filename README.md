@@ -52,6 +52,17 @@
 Basic knowledge of python testing.
 https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Testing
 
+# Commands
+## Migrations
+* show all migrations
+`docker exec -it "container name or id" python manage.py showmigrations`
+
+* create new migrations. for example, after adding change to model
+`docker exec -it "container name or id" python manage.py makemigrations`
+
+* clear all migrations
+`docker exec -it "container name or id" python manage.py migrate api zero`
+
 # Error Reference
 
 ## Docker
