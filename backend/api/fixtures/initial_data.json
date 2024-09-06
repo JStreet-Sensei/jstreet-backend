@@ -100,6 +100,56 @@
         }
     },
     {
+        "model": "api.content",
+        "pk": 11,
+        "fields": {
+            "japanese_slang": "やっとくよ",
+            "formal_version": "対応しておきます",
+            "english_slang": "I'll do it",
+            "description": "This slang is used in mainly work or discussion."
+        }
+    },
+    {
+        "model": "api.content",
+        "pk": 12,
+        "fields": {
+            "japanese_slang": "はじめまして！",
+            "formal_version": "はじめまして。よろしくお願いします。",
+            "english_slang": "Hello!",
+            "description": "This is used in a first meeting to show your politeness and familiarity. The important point is that you should deliver your attitude to the other one with body language."
+        }
+    },
+    {
+        "model": "api.content",
+        "pk": 13,
+        "fields": {
+            "japanese_slang": "いくつ？",
+            "formal_version": "おいくつですか？",
+            "english_slang": "How old are you?",
+            "description": "いくつ is used to count something. When you face the other one and say いくつ, it means you're asking about the other's age. Generally speaking, Japanese don't often ask the age but they care it seriously."
+        }
+    },
+    {
+        "model": "api.content",
+        "pk": 14,
+        "fields": {
+            "japanese_slang": "めっちゃいい！",
+            "formal_version": "とてもいいですね",
+            "english_slang": "So cool",
+            "description": "めっちゃ is originally from Kansai destrict. Now mainly younger people use that everywhere in Japan."
+        }
+    },
+    {
+        "model": "api.content",
+        "pk": 15,
+        "fields": {
+            "japanese_slang": "わからん",
+            "formal_version": "わかりません",
+            "english_slang": "I don't know.",
+            "description": "Probably わからん is from Kansai destrict, but this doesn't have strong nuance that this word from Kansai. This is a little rough, you can't use in a formal meeting or official conference. Of course you can't use when you talk with your boss."
+        }
+    },
+    {
         "model": "api.gamename",
         "pk": 1,
         "fields": {
