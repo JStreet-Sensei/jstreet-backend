@@ -43,7 +43,5 @@ urlpatterns = [
     path('content/create', create_content, name='create_content'),
     path('content/<int:pk>/', content_detail, name='content_detail'),
 
-    # path('quick-answer-game/problem', problem, name='problem'),
     path('quick-answer-game/game-contents', quick_answer_game_content, name='quick_answer_game_content'),
-    path('quick-answer-game/answer', quick_answer_game_asnswer, name='quick_answer_game_asnswer'),
 ]

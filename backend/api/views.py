@@ -263,21 +263,6 @@ def content_detail(request, pk):
         content.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-
-# @api_view(["GET"])
-# def problem(request):
-#     if request.method != "GET":
-#         return Response(status=status.HTTP_400_BAD_REQUEST)
-#     # Get one random content
-#     test_content = {
-#         "japanese_slang": "やばい",
-#         "formal_version": "危ない (あぶない)",
-#         "description": "This slang can mean something is dangerous or amazing depending on the context. This slang is heavily influenced by the context.",
-#     }
-#     serializer = ContentSerializer(test_content)
-#     return Response(serializer.data)
-
-
 @api_view(["GET"])
 def quick_answer_game_content(request):
     """_summary_
@@ -338,25 +323,5 @@ def quick_answer_game_content(request):
             return Response(
                 data={"problems": problems, "deals": deals}, status=status.HTTP_200_OK
             )
-    else:
-        return Response(status=status.HTTP_400_BAD_REQUEST)
-
-
-@api_view(["POST"])
-def quick_answer_game_asnswer(request):
-    """_summary_
-    Get all data for a quick answer game. All problems, all deals for each users.
-    Dictionary is like : {problems:[{content_id:..., japanese_slang}],
-    deal:[[slang1, slang2, slang2], [slang1, slang2, slang3], ...]}
-
-    Args:
-        request (_type_): _description_
-
-    Returns:
-        _type_: _description_
-    """
-    if request.method == "POST":
-        # process
-        print("test")
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
