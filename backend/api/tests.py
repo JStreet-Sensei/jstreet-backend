@@ -189,30 +189,31 @@ class QuickAnswerGameTests(TestCase):
     def setUp(self):
         self.user = User.objects.create(username='learner', email='learner@example.com', password='password123')
         test_contents = [{"content_id":1, "japanese_slang":'Konnichiwa', 
-                          "formal_version":'Hello', "description":'A common greeting in Japanese.'},
+                          "formal_version":'Hello', "description":'A common greeting in Japanese.',"english_slang":"Soooo cool"},
                          {"content_id":2, "japanese_slang":'Konnichiwa', 
-                          "formal_version":'Hello', "description":'A common greeting in Japanese.'},
+                          "formal_version":'Hello', "description":'A common greeting in Japanese.',"english_slang":"Soooo cool"},
                          {"content_id":3, "japanese_slang":'Konnichiwa', 
-                          "formal_version":'Hello', "description":'A common greeting in Japanese.'},
+                          "formal_version":'Hello', "description":'A common greeting in Japanese.',"english_slang":"Soooo cool"},
                          {"content_id":4, "japanese_slang":'Konnichiwa', 
-                          "formal_version":'Hello', "description":'A common greeting in Japanese.'},
+                          "formal_version":'Hello', "description":'A common greeting in Japanese.',"english_slang":"Soooo cool"},
                          {"content_id":5, "japanese_slang":'Konnichiwa', 
-                          "formal_version":'Hello', "description":'A common greeting in Japanese.'},
+                          "formal_version":'Hello', "description":'A common greeting in Japanese.',"english_slang":"Soooo cool"},
                          {"content_id":6, "japanese_slang":'Konnichiwa', 
-                          "formal_version":'Hello', "description":'A common greeting in Japanese.'},
+                          "formal_version":'Hello', "description":'A common greeting in Japanese.',"english_slang":"Soooo cool"},
                          {"content_id":7, "japanese_slang":'Konnichiwa', 
-                          "formal_version":'Hello', "description":'A common greeting in Japanese.'},
+                          "formal_version":'Hello', "description":'A common greeting in Japanese.',"english_slang":"Soooo cool"},
                          {"content_id":8, "japanese_slang":'Konnichiwa', 
-                          "formal_version":'Hello', "description":'A common greeting in Japanese.'},
+                          "formal_version":'Hello', "description":'A common greeting in Japanese.',"english_slang":"Soooo cool"},
                          {"content_id":9, "japanese_slang":'Konnichiwa', 
-                          "formal_version":'Hello', "description":'A common greeting in Japanese.'},
+                          "formal_version":'Hello', "description":'A common greeting in Japanese.',"english_slang":"Soooo cool"},
                          {"content_id":10, "japanese_slang":'Konnichiwa', 
-                          "formal_version":'Hello', "description":'A common greeting in Japanese.'},]
+                          "formal_version":'Hello', "description":'A common greeting in Japanese.',"english_slang":"Soooo cool"},]
         for i in test_contents:
-            self.content = Content.objects.create(content_id=i.content_id, 
-                                                  japanese_slang=i.japanese_slang, 
-                                                  formal_version=i.formal_version, 
-                                                  description=i.description)
+            self.content = Content.objects.create(content_id=i["content_id"], 
+                                                  japanese_slang=i["japanese_slang"], 
+                                                  formal_version=i["formal_version"], 
+                                                  description=i["description"],
+                                                  english_slang=i["english_slang"])
         self.words_learned_data = {'user': self.user.id, 'content': self.content.content_id}
         self.words_learned = WordsLearned.objects.create(user=self.user, content=self.content)
         self.client = APIClient()
@@ -234,9 +235,15 @@ class QuickAnswerGameTests(TestCase):
     #     self.assertNotEqual(response1[10], response2[10])
 
     def test_quick_answer_game_content(self):
-        response = self.client.get(reverse('deal'))
+        response = self.client.get(reverse('quick_answer_game_content'))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1)
+        self.assertEqual(len(response.data["problems"]), 10)
+        self.assertEqual(len(response.data["deals"]), 10)
+        self.assertEqual(len(response.data["deals"][0]), 2)
+        content_ids = [x["content_id"] for x in response.data["problems"]]
+        # check content id is unique or not
+        print("content_ids is :",content_ids)
+        self.assertEqual(len(set(content_ids)) == len(content_ids), True)
 
     # def test_get_words_learned_detail(self):
     #     response = self.client.get(reverse('words_learned_detail', kwargs={'pk': self.words_learned.id}))
