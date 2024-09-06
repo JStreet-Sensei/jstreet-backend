@@ -70,6 +70,9 @@ Run specific test case
 * clear all migrations
 `docker exec -it "container name or id" python manage.py migrate api zero`
 
+* migration
+`docker exec -it "container name or id" python manage.py migrate`
+
 # Error Reference
 
 ## Docker
