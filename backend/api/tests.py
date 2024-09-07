@@ -270,8 +270,3 @@ class MemoGameTests(TestCase):
             self.assertIn("front", i)
             self.assertIn("back", i)
             self.assertIn("match", i)
-            
-        
-    # Response contains 16 contents
-    #front, back, match key is in response
-    # for now, the pair has the same match key.

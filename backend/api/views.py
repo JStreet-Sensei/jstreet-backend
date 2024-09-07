@@ -336,17 +336,13 @@ def memo_game_content(request):
             card1 = {
                 "front": "J-Town",
                 "back": ContentSerializer(contents[i]).data["formal_version"],
-                # "back": contents[i]["formal_version"],
                 "match": i,
             }
             card2 = {
                 "front": "J-Town",
                 "back": ContentSerializer(contents[i]).data["japanese_slang"],
-                # "back": contents[i]["japanese_slang"],
                 "match": i,
             }
-            # cards.append(ContentSerializer(card1).data)
-            # cards.append(ContentSerializer().data)
             cards.append(card1)
             cards.append(card2)
         random.shuffle(cards)
@@ -354,22 +350,3 @@ def memo_game_content(request):
 
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
-    # try:
-    #     content = Content.objects.get(pk=pk)
-    # except Content.DoesNotExist:
-    #     return Response(status=status.HTTP_404_NOT_FOUND)
-
-    # if request.method == 'GET':
-    #     serializer = ContentSerializer(content)
-    #     return Response(serializer.data)
-
-    # elif request.method == 'PUT':
-    #     serializer = ContentSerializer(content, data=request.data)
-    #     if serializer.is_valid():
-    #         serializer.save()
-    #         return Response(serializer.data)
-    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    # elif request.method == 'DELETE':
-    #     content.delete()
-    #     return Response(status=status.HTTP_204_NO_CONTENT)
