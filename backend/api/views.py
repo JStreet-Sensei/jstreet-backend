@@ -263,7 +263,70 @@ def content_detail(request, pk):
         content.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+@api_view(["GET"])
+def quick_answer_game_content(request):
+    """_summary_
+    Get all data for a quick answer game. All problems, all deals for each users.
+    Dictionary is like : {problems:[{content_id:..., japanese_slang}, ...],
+    deals:[[slang1, slang2, slang2], [slang1, slang2, slang3], ...]}
 
+    Args:
+        request (_type_): Request should be get method.
+
+    Returns:
+        {
+    "problems": [
+        {
+            "content_id": 4,
+            "japanese_slang": "ぶっちゃけて言うと、... (ぶっちゃけていうと、...)",
+            "english_slang": "To be honest,",
+            "formal_version": "正直に言うと、... (しょうじきにいうと、...)",
+            "description": "This slang is used to say 'to be honest' or 'to speak frankly.' It’s the same as the polite version."
+        },....
+        ,  "deals": [
+        [
+            {
+                "content_id": 3,
+                "japanese_slang": "ちょい待って！ (ちょいまって！)",
+                "english_slang": "Wait!",
+                "formal_version": "ちょっと待って。 (ちょっとまって。)",
+                "description": "This slang means 'wait a bit' or 'hold on.' The polite way is '少々お待ちください。 (しょうしょうおまちください。)'"
+            },...
+        : Problems contains each problem user should solve. Deals has fake deals in every game.
+    """
+    if request.method == "GET":
+        
+        CONTENT_KEYS = list(
+            Content.objects.values_list("content_id", flat=True).order_by("content_id")
+        )
+        content_keys_copied = CONTENT_KEYS.copy()
+        problem_keys = []
+        for i in range(10):
+            problem_keys.append(random.choice(content_keys_copied))
+            content_keys_copied.remove(problem_keys[len(problem_keys) - 1])
+        problems = []
+        for i in problem_keys:
+            content = Content.objects.get(pk=i)
+            problems.append(ContentSerializer(content).data)
+
+        deals = []
+        for i in problems:
+            fake_range = CONTENT_KEYS
+            fake_range.remove(i["content_id"])
+            random.shuffle(fake_range)
+            fakes_id = fake_range[:2]
+            deal = []
+            for k in fakes_id:
+                content = Content.objects.get(pk=k)
+                deal.append(ContentSerializer(content).data)
+            deals.append(deal)
+            return Response(
+                data={"problems": problems, "deals": deals}, status=status.HTTP_200_OK
+            )
+    else:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+    
 @api_view(["GET"])
 def memo_game_content(request):
     if request.method == "GET":

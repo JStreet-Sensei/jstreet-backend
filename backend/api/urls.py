@@ -5,7 +5,8 @@ from .views import (
     get_lobbies, create_lobby, lobby_detail,
     get_game_names, create_game_name, game_name_detail,
     get_words_learned, create_words_learned, words_learned_detail,
-    get_content, create_content, content_detail
+    get_content, create_content, content_detail,
+    quick_answer_game_asnswer, quick_answer_game_content
 )
 
 urlpatterns = [
@@ -41,6 +42,11 @@ urlpatterns = [
     path('content/', get_content, name='get_content'),
     path('content/create', create_content, name='create_content'),
     path('content/<int:pk>/', content_detail, name='content_detail'),
-    
+
+    # Quick answer game URL
+    path('quick-answer-game/game-contents', quick_answer_game_content, name='quick_answer_game_content'),
+
+    #Memo game URL
     path('memo-game/game-contents', memo_game_content, name='memo_game_content'),
+
 ]

@@ -37,6 +37,7 @@ class WordsLearned(models.Model):
 class Content(models.Model):
     content_id = models.AutoField(primary_key=True)
     japanese_slang = models.CharField(max_length=255)
+    english_slang = models.CharField(max_length=255)
     formal_version = models.CharField(max_length=255)
     description = models.TextField()
 
