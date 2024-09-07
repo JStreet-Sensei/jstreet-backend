@@ -330,22 +330,26 @@ def quick_answer_game_content(request):
 @api_view(["GET"])
 def memo_game_content(request):
     if request.method == "GET":
-        cards = []
         contents = list(Content.objects.order_by("?")[:8])
-        for i in range(len(contents)):
+        corresponding_indexes = [x for x in range(16)]
+        cards = corresponding_indexes.copy()
+        random.shuffle(corresponding_indexes)
+        for i in range(len(contents)): #0, 1, ...7
+            index1_in_page = corresponding_indexes[2*i]
+            index2_in_page = corresponding_indexes[2*i+1]
             card1 = {
                 "front": "J-Town",
                 "back": ContentSerializer(contents[i]).data["formal_version"],
-                "match": i,
+                "match": index1_in_page,
             }
             card2 = {
                 "front": "J-Town",
                 "back": ContentSerializer(contents[i]).data["japanese_slang"],
-                "match": i,
+                "match": index2_in_page,
             }
-            cards.append(card1)
-            cards.append(card2)
-        random.shuffle(cards)
+            cards[index2_in_page] = card1
+            cards[index1_in_page] = card2
+        print("cards is :",cards)
         return Response(data={"data": cards}, status=status.HTTP_200_OK)
 
     else:
