@@ -55,7 +55,7 @@ https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Testing
 Test URL example.
 http://localhost:8000/api/quick-answer-game/game-contents
 
-Run specific test case
+Run specific test case example<br>
 `docker exec -it "container name or id" python manage.py test api.tests.QuickAnswerGameTests.test_quick_answer_game_content`
 
 
