@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (
-    GoogleLogin, get_users, create_user, user_detail,
+    GoogleLogin, get_users, create_user, memo_game_content, user_detail,
     get_scores, create_score, score_detail,
     get_lobbies, create_lobby, lobby_detail,
     get_game_names, create_game_name, game_name_detail,
@@ -41,4 +41,6 @@ urlpatterns = [
     path('content/', get_content, name='get_content'),
     path('content/create', create_content, name='create_content'),
     path('content/<int:pk>/', content_detail, name='content_detail'),
+    
+    path('memo-game/game-contents', memo_game_content, name='memo_game_content'),
 ]
