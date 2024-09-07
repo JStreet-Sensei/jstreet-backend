@@ -183,3 +183,50 @@ class WordsLearnedTests(TestCase):
     def test_update_words_learned(self):
         new_content = Content.objects.create(content_id=2, japanese_slang='Ya-ho', formal_version='Hi', description='A common expression of XX in Japanese.')
         update_data = {'content': new_content.id}
+
+class MemoGameTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create(username='learner', email='learner@example.com', password='password123')
+        test_contents = [{"content_id":1, "japanese_slang":'Konnichiwa', 
+                          "formal_version":'Hello', "description":'A common greeting in Japanese.',"english_slang":"Soooo cool"},
+                         {"content_id":2, "japanese_slang":'Konnichiwa', 
+                          "formal_version":'Hello', "description":'A common greeting in Japanese.',"english_slang":"Soooo cool"},
+                         {"content_id":3, "japanese_slang":'Konnichiwa', 
+                          "formal_version":'Hello', "description":'A common greeting in Japanese.',"english_slang":"Soooo cool"},
+                         {"content_id":4, "japanese_slang":'Konnichiwa', 
+                          "formal_version":'Hello', "description":'A common greeting in Japanese.',"english_slang":"Soooo cool"},
+                         {"content_id":5, "japanese_slang":'Konnichiwa', 
+                          "formal_version":'Hello', "description":'A common greeting in Japanese.',"english_slang":"Soooo cool"},
+                         {"content_id":6, "japanese_slang":'Konnichiwa', 
+                          "formal_version":'Hello', "description":'A common greeting in Japanese.',"english_slang":"Soooo cool"},
+                         {"content_id":7, "japanese_slang":'Konnichiwa', 
+                          "formal_version":'Hello', "description":'A common greeting in Japanese.',"english_slang":"Soooo cool"},
+                         {"content_id":8, "japanese_slang":'Konnichiwa', 
+                          "formal_version":'Hello', "description":'A common greeting in Japanese.',"english_slang":"Soooo cool"},
+                         {"content_id":9, "japanese_slang":'Konnichiwa', 
+                          "formal_version":'Hello', "description":'A common greeting in Japanese.',"english_slang":"Soooo cool"},
+                         {"content_id":10, "japanese_slang":'Konnichiwa', 
+                          "formal_version":'Hello', "description":'A common greeting in Japanese.',"english_slang":"Soooo cool"},]
+        for i in test_contents:
+            self.content = Content.objects.create(content_id=i["content_id"], 
+                                                  japanese_slang=i["japanese_slang"], 
+                                                  formal_version=i["formal_version"], 
+                                                  description=i["description"],
+                                                  english_slang=i["english_slang"])
+        self.words_learned_data = {'user': self.user.id, 'content': self.content.content_id}
+        self.words_learned = WordsLearned.objects.create(user=self.user, content=self.content)
+        self.client = APIClient()
+    
+    def test_memo_game_content(self):
+        response = self.client.get(reverse('memo_game_content'))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data['data']), 16)
+        for i in response.data["data"]:
+            self.assertIn("front", i)
+            self.assertIn("back", i)
+            self.assertIn("match", i)
+            
+        
+    # Response contains 16 contents
+    #front, back, match key is in response
+    # for now, the pair has the same match key.
