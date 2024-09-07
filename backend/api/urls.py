@@ -6,7 +6,7 @@ from .views import (
     get_game_names, create_game_name, game_name_detail,
     get_words_learned, create_words_learned, words_learned_detail,
     get_content, create_content, content_detail,
-    quick_answer_game_asnswer, quick_answer_game_content
+    quick_answer_game_content
 )
 
 urlpatterns = [
