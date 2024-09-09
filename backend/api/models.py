@@ -18,7 +18,7 @@ class Lobby(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'Lobby for game {self.game_id} owned by {self.owner_user.username}'
+        return f'Lobby for game {self.game_id} owned by {self.owner.username}'
 
 class GameName(models.Model):
     id = models.IntegerField(primary_key=True)
