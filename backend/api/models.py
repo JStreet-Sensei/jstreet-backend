@@ -13,7 +13,7 @@ class Score(models.Model):
 class Lobby(models.Model):
     game_id = models.AutoField(primary_key=True)
     owner = models.ForeignKey(User, related_name='lobby_owner', on_delete=models.CASCADE)
-    players = models.ManyToManyField(User, related_name='joined_lobbies')
+    name = models.CharField(max_length=255, default='Lobby_default_name')
     game_type = models.ForeignKey('GameName', on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
 

@@ -188,10 +188,7 @@
             "date": "2024-08-29T14:30:00Z",
             "game_type": 1,
             "owner": 1,
-            "players": [
-                1,
-                2
-            ]
+            "name": "test"
         }
     },
     {
