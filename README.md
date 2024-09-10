@@ -73,6 +73,23 @@ Run specific test case example<br>
 * migration
 `docker exec -it "container name or id" python manage.py migrate`
 
+## Seeds data
+* Add a new super user<br>
+https://www.w3schools.com/django/django_admin_create_user.php
+
+* Add a normal user<br>
+After creating superuser, dump the data and change the flag for super user manually.
+https://stackoverflow.com/questions/8017204/users-in-initial-data-fixture
+
+Below are users.<br>
+
+```bash
+IamSuper/password
+studyman/studyman
+learnLearn/learnLearn
+```
+
+
 # Error Reference
 
 ## Docker
