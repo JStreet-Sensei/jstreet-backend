@@ -17,7 +17,7 @@ jobs:
         include:
           - db: postgres
             db_user: runner
-            db_password: ''
+            db_password: password
             db_host: "127.0.0.1"
     steps:
     - uses: actions/checkout@v4
