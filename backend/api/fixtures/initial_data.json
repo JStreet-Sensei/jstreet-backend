@@ -246,7 +246,7 @@
             "content": 7,
             "user": 4
         }
-    }
+    },
     {
         "model": "api.wordslearned",
         "pk": 9,
@@ -254,7 +254,7 @@
             "content": 8,
             "user": 4
         }
-    }
+    },
     {
         "model": "api.wordslearned",
         "pk": 10,
