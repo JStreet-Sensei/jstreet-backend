@@ -39,7 +39,7 @@ jobs:
       env:
         PGUSER: ${{ matrix.db_user }}
         PGPASSWORD: ${{ matrix.db_password }}
-        HOST: ${{matrix.db_host}}
+        PGHOST: ${{matrix.db_host}}
       working-directory: ./backend
       run: |
         python manage.py test
