@@ -557,25 +557,12 @@ class FlashCardPracticing(TestCase):
                 formal_version=test_contents[i]["formal_version"],
                 description=test_contents[i]["description"],
                 english_slang=test_contents[i]["english_slang"],
-                # content_id=i["content_id"],
-                # japanese_slang=i["japanese_slang"],
-                # formal_version=i["formal_version"],
-                # description=i["description"],
-                # english_slang=i["english_slang"],
             )
             if len(words_learned_data) - 1 > i:
                 print(self.user, self.content)
                 self.words_learned = WordsLearned.objects.create(
                     user=self.user, content=self.content
                 )
-                # self.words_learned = WordsLearned.objects.create(
-                #     user=self.user, content=words_learned_data[i]
-                # )
-
-        # self.words_learned_data = {
-        #     "user": self.user.id,
-        #     "content": self.content.content_id,
-        # }
         self.client = APIClient()
 
     def test_flash_card_content(self):
