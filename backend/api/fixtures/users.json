@@ -1,0 +1,74 @@
+[
+{
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$iRIkix1vOIr8Ca4FH5yrr1$87kC5zsg1iuUroPv8/NfRTxI0o9m/COnwrynm3Tp52M=",
+        "last_login": "2024-09-09T15:37:30.952Z",
+        "is_superuser": false,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "email@email.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-09-09T15:09:56.278Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$Sx9bhf4f4WSrj0TjJEjad2$mEEBYAcbyZQZXMr0E3u22GYNiBWyNk1jegGx9CkfCAo=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "IamSuper",
+        "first_name": "",
+        "last_name": "",
+        "email": "testtest@mail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-09-10T09:36:59.568Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$Rdbj6YKS5jb3gLbzfX0blY$99QU873fI86hsYnE54cIwp4SwtH3q6KF2DnvplrTfRY=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "studyman",
+        "first_name": "",
+        "last_name": "",
+        "email": "studyman@mail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-09-10T09:39:45.949Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 6,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$jzpT2nHlyyKaqkTv2BpCsz$nZ7XQNq8DHLUCsCm5UIkGQDmnrh2iI4guVUewGj12P8=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "learnLearn",
+        "first_name": "",
+        "last_name": "",
+        "email": "learnLearn@mail.jp",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-09-10T09:40:27.134Z",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]
