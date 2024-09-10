@@ -558,11 +558,9 @@ class FlashCardPracticing(TestCase):
                 description=test_contents[i]["description"],
                 english_slang=test_contents[i]["english_slang"],
             )
-            if len(words_learned_data) - 1 > i:
-                print(self.user, self.content)
-                self.words_learned = WordsLearned.objects.create(
-                    user=self.user, content=self.content
-                )
+            self.words_learned = WordsLearned.objects.create(
+                user=self.user, content=self.content
+            )
         self.client = APIClient()
 
     def test_flash_card_content(self):
