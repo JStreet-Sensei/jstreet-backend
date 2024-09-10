@@ -11,6 +11,7 @@ from .serializers import (
     ContentSerializer,
 )
 import random
+from django.db.models import Q
 
 from dj_rest_auth.registration.views import SocialLoginView
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
@@ -263,6 +264,7 @@ def content_detail(request, pk):
         content.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
 @api_view(["GET"])
 def quick_answer_game_content(request):
     """_summary_
@@ -295,7 +297,7 @@ def quick_answer_game_content(request):
         : Problems contains each problem user should solve. Deals has fake deals in every game.
     """
     if request.method == "GET":
-        
+
         CONTENT_KEYS = list(
             Content.objects.values_list("content_id", flat=True).order_by("content_id")
         )
@@ -325,8 +327,8 @@ def quick_answer_game_content(request):
             )
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
-    
-    
+
+
 @api_view(["GET"])
 def memo_game_content(request):
     if request.method == "GET":
@@ -334,9 +336,9 @@ def memo_game_content(request):
         corresponding_indexes = [x for x in range(16)]
         cards = corresponding_indexes.copy()
         random.shuffle(corresponding_indexes)
-        for i in range(len(contents)): #0, 1, ...7
-            index1_in_page = corresponding_indexes[2*i]
-            index2_in_page = corresponding_indexes[2*i+1]
+        for i in range(len(contents)):  # 0, 1, ...7
+            index1_in_page = corresponding_indexes[2 * i]
+            index2_in_page = corresponding_indexes[2 * i + 1]
             card1 = {
                 "front": "J-Town",
                 "back": ContentSerializer(contents[i]).data["formal_version"],
@@ -349,8 +351,54 @@ def memo_game_content(request):
             }
             cards[index2_in_page] = card1
             cards[index1_in_page] = card2
-        print("cards is :",cards)
+        print("cards is :", cards)
         return Response(data={"data": cards}, status=status.HTTP_200_OK)
+
+    else:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(["GET"])
+def flash_card_content(request):
+    """
+        Takes user_id, limit_number
+        Return contents user learned.
+
+        Args:
+            request http request: request should contain query parameters.
+
+        Returns:
+            _type_: example
+            {
+        "data": [
+            {
+                "content_id": 1,
+                "japanese_slang": "やばい",
+                "english_slang": "Look out!",
+                "formal_version": "危ない (あぶない)",
+                "description": "This slang can mean something is dangerous or amazing depending on the context. This slang is heavily influenced by the context."
+            }
+        ]
+    }
+    """
+    if request.method == "GET":
+        try:
+            user_id = request.GET.get("user-id")
+            limits = request.GET.get("limits")
+        except:
+            print("Failed to get query parameter")
+        id_learned = WordsLearned.objects.all().filter(user=user_id)
+        id_learned_serialized = WordsLearnedSerializer(id_learned, many=True)
+        id_query = [x["content"] for x in list(id_learned_serialized.data)]
+        random.shuffle(id_query)
+        contents_learned = Content.objects.filter(
+            content_id__in=id_query[: int(limits)]
+        )
+        content_serialized = ContentSerializer(contents_learned, many=True)
+        print(content_serialized.data)
+        return Response(
+            data={"data": content_serialized.data}, status=status.HTTP_200_OK
+        )
 
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
