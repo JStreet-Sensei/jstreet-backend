@@ -351,7 +351,6 @@ def memo_game_content(request):
             }
             cards[index2_in_page] = card1
             cards[index1_in_page] = card2
-        print("cards is :", cards)
         return Response(data={"data": cards}, status=status.HTTP_200_OK)
 
     else:

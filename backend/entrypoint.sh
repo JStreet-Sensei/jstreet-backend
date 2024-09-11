@@ -10,6 +10,7 @@ python manage.py collectstatic --noinput
 
 # Seed data
 python manage.py loaddata api/fixtures/initial_data.json
+python manage.py loaddata api/fixtures/users.json
 
 # Create default super user
 python manage.py createsuperuser --noinput
