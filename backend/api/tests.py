@@ -247,6 +247,24 @@ class UserTests(TestCase):
         )
         update_data = {"content": new_content.id}
 
+class UserExsistenceTests(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.user_data = {
+            "username": "testuser",
+            "email": "testuser@example.com",
+            "password": "password123",
+        }
+        self.user = User.objects.create(**self.user_data)
+    def test_get_user_existence(self):
+        response1 = self.client.get(
+            reverse("get_user_existence", kwargs={"username": self.user.username})
+        )
+        response2 = self.client.get(
+            reverse("get_user_existence", kwargs={"username": "nonononono"})
+        )
+        self.assertEqual(response1.status_code, status.HTTP_409_CONFLICT)
+        self.assertEqual(response2.status_code, status.HTTP_200_OK)
 
 class QuickAnswerGameTests(TestCase):
     def setUp(self):
