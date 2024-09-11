@@ -51,6 +51,7 @@ class UserTests(TestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(User.objects.count(), 0)
 
+
 class ScoreTests(TestCase):
 
     def setUp(self):
@@ -113,6 +114,7 @@ class ScoreTests(TestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Score.objects.count(), 0)
 
+
 class LobbyTests(TestCase):
     def setUp(self):
         self.client = APIClient()
@@ -174,6 +176,8 @@ class LobbyTests(TestCase):
         self.assertEqual(Lobby.objects.count(), 0)
 
     # Todo Change the name name!
+
+
 class GameNameTests(TestCase):
     def setUp(self):
         self.client = APIClient()
@@ -206,6 +210,7 @@ class GameNameTests(TestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(GameName.objects.count(), 0)
 
+
 class WordsLearnedTests(TestCase):
 
     def setUp(self):
@@ -219,7 +224,10 @@ class WordsLearnedTests(TestCase):
             formal_version="Hello",
             description="A common greeting in Japanese.",
         )
-        self.words_learned_data = {"user": self.user.id, "content": self.content.content_id}
+        self.words_learned_data = {
+            "user": self.user.id,
+            "content": self.content.content_id,
+        }
         self.words_learned = WordsLearned.objects.create(
             user=self.user, content=self.content
         )
@@ -252,6 +260,7 @@ class WordsLearnedTests(TestCase):
         )
         update_data = {"content": new_content.content_id}
 
+
 class UserExsistenceTests(TestCase):
     def setUp(self):
         self.client = APIClient()
@@ -261,6 +270,7 @@ class UserExsistenceTests(TestCase):
             "password": "password123",
         }
         self.user = User.objects.create(**self.user_data)
+
     def test_get_user_existence(self):
         response1 = self.client.get(
             reverse("get_user_existence", kwargs={"username": self.user.username})
@@ -270,6 +280,7 @@ class UserExsistenceTests(TestCase):
         )
         self.assertEqual(response1.status_code, status.HTTP_409_CONFLICT)
         self.assertEqual(response2.status_code, status.HTTP_200_OK)
+
 
 class QuickAnswerGameTests(TestCase):
     def setUp(self):
