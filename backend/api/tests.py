@@ -51,7 +51,7 @@ class UserTests(TestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(User.objects.count(), 0)
 
-    # class ScoreTests(TestCase):
+class ScoreTests(TestCase):
 
     def setUp(self):
         self.client = APIClient()
@@ -64,8 +64,16 @@ class UserTests(TestCase):
             "score": 10,
             "date": "2024-09-02T00:00:00Z",
         }
+        self.game_name = GameName.objects.create(id=1, name="Multiplayer")
+
+        self.lobby = Lobby.objects.create(
+            game_id=1,
+            owner=self.user,
+            date="2024-09-02T00:00:00Z",
+            game_type=self.game_name,
+        )
         self.score = Score.objects.create(
-            user=self.user, game_id=1, score=10, date="2024-09-02T00:00:00Z"
+            user=self.user, game_id=self.lobby, score=10, date="2024-09-02T00:00:00Z"
         )
 
     def test_create_score(self):
@@ -105,8 +113,7 @@ class UserTests(TestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Score.objects.count(), 0)
 
-    # class LobbyTests(TestCase):
-
+class LobbyTests(TestCase):
     def setUp(self):
         self.client = APIClient()
         self.user = User.objects.create(
@@ -124,10 +131,9 @@ class UserTests(TestCase):
         self.game_name = GameName.objects.create(id=1, name="Multiplayer")
         self.lobby = Lobby.objects.create(
             game_id=1,
-            owner_user=self.user,
+            owner=self.user,
             date="2024-09-02T00:00:00Z",
-            players=4,
-            game_type="Multiplayer",
+            game_type=self.game_name,
         )
 
     def test_create_lobby(self):
@@ -144,7 +150,7 @@ class UserTests(TestCase):
 
     def test_get_lobby_detail(self):
         response = self.client.get(
-            reverse("lobby_detail", kwargs={"pk": self.lobby.id})
+            reverse("lobby_detail", kwargs={"pk": self.lobby.game_id})
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["game_type"], self.lobby.game_type)
@@ -152,7 +158,7 @@ class UserTests(TestCase):
     def test_update_lobby(self):
         update_data = {"players": 5}
         response = self.client.put(
-            reverse("lobby_detail", kwargs={"pk": self.lobby.id}),
+            reverse("lobby_detail", kwargs={"pk": self.lobby.game_id}),
             update_data,
             format="json",
         )
@@ -162,14 +168,13 @@ class UserTests(TestCase):
 
     def test_delete_lobby(self):
         response = self.client.delete(
-            reverse("lobby_detail", kwargs={"pk": self.lobby.id})
+            reverse("lobby_detail", kwargs={"pk": self.lobby.game_id})
         )
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Lobby.objects.count(), 0)
 
     # Todo Change the name name!
-    # class GameNameTests(TestCase):
-
+class GameNameTests(TestCase):
     def setUp(self):
         self.client = APIClient()
         self.game_name_data = {"id": 1, "name": "Memo Game"}
@@ -201,7 +206,7 @@ class UserTests(TestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(GameName.objects.count(), 0)
 
-    # class WordsLearnedTests(TestCase):
+class WordsLearnedTests(TestCase):
 
     def setUp(self):
         self.client = APIClient()
@@ -214,7 +219,7 @@ class UserTests(TestCase):
             formal_version="Hello",
             description="A common greeting in Japanese.",
         )
-        self.words_learned_data = {"user": self.user.id, "content": self.content.id}
+        self.words_learned_data = {"user": self.user.id, "content": self.content.content_id}
         self.words_learned = WordsLearned.objects.create(
             user=self.user, content=self.content
         )
@@ -245,7 +250,7 @@ class UserTests(TestCase):
             formal_version="Hi",
             description="A common expression of XX in Japanese.",
         )
-        update_data = {"content": new_content.id}
+        update_data = {"content": new_content.content_id}
 
 class UserExsistenceTests(TestCase):
     def setUp(self):
