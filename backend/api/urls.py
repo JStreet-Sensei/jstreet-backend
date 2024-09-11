@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (
-    GoogleLogin, flash_card_content, get_users, create_user, memo_game_content, user_detail,
+    GoogleLogin, flash_card_content, get_user_existence, get_users, create_user, memo_game_content, user_detail,
     get_scores, create_score, score_detail,
     get_lobbies, create_lobby, lobby_detail,
     get_game_names, create_game_name, game_name_detail,
@@ -12,6 +12,9 @@ from .views import (
 urlpatterns = [
 
     path("google/", GoogleLogin.as_view(), name="google_login"),
+    
+    #User URLs
+    path('user/<username>/existence', get_user_existence, name='get_user_existence'),
 
     # User URLs
     path('users/', get_users, name='get_users'),

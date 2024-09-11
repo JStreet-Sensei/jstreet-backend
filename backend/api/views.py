@@ -27,6 +27,27 @@ class GoogleLogin(SocialLoginView):
 
 # User views
 @api_view(["GET"])
+def get_user_existence(request, username):
+    """_summary_
+    Case-insensitive about username.
+
+    Returns:
+        returns only http status.
+    """
+    if request.method == "GET":
+        # username = request.GET.get("username")
+        user = User.objects.all().filter(username=username)
+        serializer = UserSerializer(user, many=True)
+        if not serializer.data:
+            return Response(status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_409_CONFLICT)
+    else:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+# Users views
+@api_view(["GET"])
 def get_users(request):
     users = User.objects.all()
     serializer = UserSerializer(users, many=True)
