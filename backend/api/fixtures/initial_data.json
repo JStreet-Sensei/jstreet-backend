@@ -164,16 +164,6 @@
         }
     },
     {
-        "model": "api.lobby",
-        "pk": 1,
-        "fields": {
-            "date": "2024-08-29T14:30:00Z",
-            "game_type": 1,
-            "owner": 1,
-            "name": "test"
-        }
-    },
-    {
         "model": "api.score",
         "pk": 1,
         "fields": {
