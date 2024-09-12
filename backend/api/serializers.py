@@ -7,9 +7,10 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ScoreSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source="user.username")
     class Meta:
         model = Score
-        fields = '__all__'
+        fields = ['id','score','date','username']
 
 class LobbySerializer(serializers.ModelSerializer):
     class Meta:
