@@ -90,16 +90,19 @@ def user_detail(request, pk):
 # Score views
 @api_view(["GET"])
 def get_scores(request, user_id):
-    limit = request.GET.get('limit')
-    #user_id = request.GET.get('user_id')
+    limit = request.GET.get("limit")
+    # user_id = request.GET.get('user_id')
     if limit is None:
         limit = 20
     # if user_id is None:
     #     user_id = 0
-    scores = Score.objects.filter(player1 = user_id) | Score.objects.filter(player2 = user_id)
-    scores.order_by('-date')
+    scores = Score.objects.filter(player1=user_id) | Score.objects.filter(
+        player2=user_id
+    )
+    scores.order_by("-date")
     serializer = ScoreSerializer(scores, many=True)
     return Response(serializer.data)
+
 
 @api_view(["POST"])
 def create_score(request):
