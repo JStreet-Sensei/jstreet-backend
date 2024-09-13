@@ -2,7 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Score(models.Model):
-    user = models.ForeignKey(User, to_field='id', on_delete=models.CASCADE)
+    user_player_1 = models.ForeignKey(User, to_field='id', on_delete=models.CASCADE)
+    user_player_2 = models.ForeignKey(User, to_field='id', on_delete=models.CASCADE)
     game_id = models.ForeignKey('lobby',to_field='game_id', on_delete=models.CASCADE)
     score = models.IntegerField()
     date = models.DateTimeField(auto_now_add=True)
