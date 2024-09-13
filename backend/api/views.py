@@ -7,6 +7,7 @@ from .serializers import (
     ScoreSerializer,
     LobbySerializer,
     GameNameSerializer,
+    WordsLearnedListSerializer,
     WordsLearnedSerializer,
     ContentSerializer,
 )
@@ -88,13 +89,13 @@ def user_detail(request, pk):
 
 # Score views
 @api_view(["GET"])
-def get_scores(request):
+def get_scores(request, user_id):
     limit = request.GET.get('limit')
-    user_id = request.GET.get('user_id')
+    #user_id = request.GET.get('user_id')
     if limit is None:
         limit = 20
-    if user_id is None:
-        user_id = 0
+    # if user_id is None:
+    #     user_id = 0
     scores = Score.objects.filter(user=user_id).order_by('-date')
     serializer = ScoreSerializer(scores, many=True)
     return Response(serializer.data)
@@ -213,9 +214,9 @@ def game_name_detail(request, pk):
 
 # WordsLearned views
 @api_view(["GET"])
-def get_words_learned(request):
-    words_learned = WordsLearned.objects.all()
-    serializer = WordsLearnedSerializer(words_learned, many=True)
+def get_words_learned(request, user_id):
+    words_learned = WordsLearned.objects.filter(user=user_id)
+    serializer = WordsLearnedListSerializer(words_learned, many=True)
     return Response(serializer.data)
 
 

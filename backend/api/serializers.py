@@ -31,3 +31,9 @@ class ContentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Content
         fields = '__all__'
+
+class WordsLearnedListSerializer(serializers.ModelSerializer):
+    content = ContentSerializer()
+    class Meta:
+        model = WordsLearned
+        fields = ['id', 'content']

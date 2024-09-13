@@ -22,9 +22,9 @@ urlpatterns = [
     path('users/<int:pk>/', user_detail, name='user_detail'),
 
     # Score URLs
-    path('scores/', get_scores, name='get_scores'),
+    path('scores/<int:user_id>/', get_scores, name='get_scores'),
     path('scores/create', create_score, name='create_score'),
-    path('scores/<int:pk>/', score_detail, name='score_detail'),
+    path('scores/detail/<int:pk>/', score_detail, name='score_detail'),
 
     # Lobby URLs
     path('lobbies/', get_lobbies, name='get_lobbies'),
@@ -37,9 +37,10 @@ urlpatterns = [
     path('game-names/<int:pk>/', game_name_detail, name='game_name_detail'),
 
     # WordsLearned URLs
-    path('words-learned/', get_words_learned, name='get_words_learned'),
+    #path('words-learned/', get_words_learned, name='get_words_learned'),
+    path('words-learned/<int:user_id>', get_words_learned, name='get_words_learned'),
     path('words-learned/create', create_words_learned, name='create_words_learned'),
-    path('words-learned/<int:pk>/', words_learned_detail, name='words_learned_detail'),
+    path('words-learned/detail/<int:pk>/', words_learned_detail, name='words_learned_detail'),
 
     # Content URLs
     path('content/', get_content, name='get_content'),
