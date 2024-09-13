@@ -48,9 +48,7 @@ class WordsLearned(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.ForeignKey("Content", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        constraints = [models.UniqueConstraint(fields=["user", "content"], name="user-content")]
+    seen_times = models.IntegerField(default=1)
 
     def __str__(self):
         return f"{self.user.username} learned {self.content.japanese_slang}"
