@@ -38,7 +38,6 @@ class Lobby(models.Model):
 
 
 class GameName(models.Model):
-    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
@@ -49,6 +48,7 @@ class WordsLearned(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.ForeignKey("Content", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+    seen_times = models.IntegerField(default=1)
 
     def __str__(self):
         return f"{self.user.username} learned {self.content.japanese_slang}"
