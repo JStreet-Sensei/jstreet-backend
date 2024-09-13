@@ -96,9 +96,7 @@ def get_scores(request, user_id):
         limit = 20
     # if user_id is None:
     #     user_id = 0
-    scores = Score.objects.filter(player1=user_id) | Score.objects.filter(
-        player2=user_id
-    )
+    scores = Score.objects.filter(player1=user_id) | Score.objects.filter(player2=user_id)
     scores.order_by("-date")
     serializer = ScoreSerializer(scores, many=True)
     return Response(serializer.data)
@@ -219,7 +217,7 @@ def game_name_detail(request, pk):
 # WordsLearned views
 @api_view(["GET"])
 def get_words_learned(request, user_id):
-    words_learned = WordsLearned.objects.filter(user=user_id)
+    words_learned = WordsLearned.objects.filter(user=user_id).order_by("-created_at")
     serializer = WordsLearnedListSerializer(words_learned, many=True)
     return Response(serializer.data)
 
@@ -353,9 +351,7 @@ def quick_answer_game_content(request):
                 content = Content.objects.get(pk=k)
                 deal.append(ContentSerializer(content).data)
             deals.append(deal)
-            return Response(
-                data={"problems": problems, "deals": deals}, status=status.HTTP_200_OK
-            )
+            return Response(data={"problems": problems, "deals": deals}, status=status.HTTP_200_OK)
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
@@ -421,14 +417,10 @@ def flash_card_content(request):
         id_learned_serialized = WordsLearnedSerializer(id_learned, many=True)
         id_query = [x["content"] for x in list(id_learned_serialized.data)]
         random.shuffle(id_query)
-        contents_learned = Content.objects.filter(
-            content_id__in=id_query[: int(limits)]
-        )
+        contents_learned = Content.objects.filter(content_id__in=id_query[: int(limits)])
         content_serialized = ContentSerializer(contents_learned, many=True)
         print(content_serialized.data)
-        return Response(
-            data={"data": content_serialized.data}, status=status.HTTP_200_OK
-        )
+        return Response(data={"data": content_serialized.data}, status=status.HTTP_200_OK)
 
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
