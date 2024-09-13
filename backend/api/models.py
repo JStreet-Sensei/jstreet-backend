@@ -38,7 +38,6 @@ class Lobby(models.Model):
 
 
 class GameName(models.Model):
-    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
