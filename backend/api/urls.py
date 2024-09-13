@@ -38,7 +38,7 @@ urlpatterns = [
 
     # WordsLearned URLs
     #path('words-learned/', get_words_learned, name='get_words_learned'),
-    path('words-learned/<int:user_id>', get_words_learned, name='get_words_learned'),
+    path('words-learned/<int:user_id>/', get_words_learned, name='get_words_learned'),
     path('words-learned/create', create_words_learned, name='create_words_learned'),
     path('words-learned/detail/<int:pk>/', words_learned_detail, name='words_learned_detail'),
 
