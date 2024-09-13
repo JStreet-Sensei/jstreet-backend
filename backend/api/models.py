@@ -2,14 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Score(models.Model):
-    user_player_1 = models.ForeignKey(User, to_field='id', on_delete=models.CASCADE)
-    user_player_2 = models.ForeignKey(User, to_field='id', on_delete=models.CASCADE)
+    player1 = models.ForeignKey(User, to_field='id', on_delete=models.CASCADE, related_name="player_1", default=1)
+    player2 = models.ForeignKey(User, to_field='id', on_delete=models.CASCADE, related_name="player_2", default=1)
     game_id = models.ForeignKey('lobby',to_field='game_id', on_delete=models.CASCADE)
     score = models.IntegerField()
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.user.username} - {self.score}'
+        return f'{self.player1.username} vs {self.player2.username} - {self.score}'
 
 class Lobby(models.Model):
     game_id = models.AutoField(primary_key=True)

@@ -7,10 +7,11 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ScoreSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(source="user.username")
+    player1 = serializers.CharField(source="player1.username")
+    player2 = serializers.CharField(source="player2.username")
     class Meta:
         model = Score
-        fields = ['id','score','date','username']
+        fields = ['id','score','date','player1', 'player2']
 
 class LobbySerializer(serializers.ModelSerializer):
     class Meta:
