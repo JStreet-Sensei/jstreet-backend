@@ -60,10 +60,9 @@ def create_user(request):
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
         user = User.objects.create(
-        username=serializer.data['username'],
+            username=serializer.data["username"],
         )
-        user.set_password(serializer.data['password'])
-        print(user)
+        user.set_password(serializer.data["password"])
         user.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -230,10 +229,21 @@ def get_words_learned(request, user_id):
 @api_view(["POST"])
 def create_words_learned(request):
     serializer = WordsLearnedSerializer(data=request.data)
+
     if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            word_learned = WordsLearned.objects.get(
+                user_id=serializer.validated_data["user"],
+                content_id=serializer.validated_data["content"],
+            )
+            word_learned.seen_times += 1
+            word_learned.save()
+            return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
+        except WordsLearned.DoesNotExist:
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(["GET", "PUT", "DELETE"])
@@ -262,8 +272,20 @@ def words_learned_detail(request, pk):
 # Content views
 @api_view(["GET"])
 def get_content(request):
+
     content = Content.objects.all()
     serializer = ContentSerializer(content, many=True)
+    return Response(serializer.data)
+
+
+@api_view(["GET"])
+def get_unlearned_content(request, user_id):
+    # If you have seen the world at least 3 times is learned
+    learned_content = WordsLearned.objects.filter(user=user_id, seen_times__gte=3).values_list(
+        "content_id", flat=True
+    )
+    unlearned_content = Content.objects.exclude(content_id__in=learned_content)
+    serializer = ContentSerializer(unlearned_content, many=True)
     return Response(serializer.data)
 
 
@@ -424,7 +446,6 @@ def flash_card_content(request):
         random.shuffle(id_query)
         contents_learned = Content.objects.filter(content_id__in=id_query[: int(limits)])
         content_serialized = ContentSerializer(contents_learned, many=True)
-        print(content_serialized.data)
         return Response(data={"data": content_serialized.data}, status=status.HTTP_200_OK)
 
     else:

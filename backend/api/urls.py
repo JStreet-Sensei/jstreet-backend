@@ -2,6 +2,7 @@ from django.urls import path
 from .views import (
     GoogleLogin,
     flash_card_content,
+    get_unlearned_content,
     get_user_existence,
     get_users,
     create_user,
@@ -51,6 +52,7 @@ urlpatterns = [
     path("words-learned/detail/<int:pk>/", words_learned_detail, name="words_learned_detail"),
     # Content URLs
     path("content/", get_content, name="get_content"),
+    path("content-unlearned/<int:user_id>/", get_unlearned_content, name="get_unlearned_content"),
     path("content/create", create_content, name="create_content"),
     path("content/<int:pk>/", content_detail, name="content_detail"),
     # Flash card page URL
