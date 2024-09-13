@@ -50,6 +50,9 @@ class WordsLearned(models.Model):
     content = models.ForeignKey("Content", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=["user", "content"], name="user-content")]
+
     def __str__(self):
         return f"{self.user.username} learned {self.content.japanese_slang}"
 
