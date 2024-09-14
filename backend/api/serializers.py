@@ -9,12 +9,29 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class ScoreSerializer(serializers.ModelSerializer):
-    player1 = serializers.CharField(source="player1.username")
-    player2 = serializers.CharField(source="player2.username")
+    winner = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+    loser = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+
+    winner_username = serializers.SerializerMethodField()
+    loser_username = serializers.SerializerMethodField()
 
     class Meta:
         model = Score
-        fields = ["id", "score", "date", "player1", "player2"]
+        fields = ["id", "score", "date", "winner", "loser", "winner_username", "loser_username"]
+
+    def get_winner_username(self, obj):
+        return obj.winner.username
+
+    def get_loser_username(self, obj):
+        return obj.loser.username
+
+    def create(self, validated_data):
+        winner = validated_data.pop("winner")
+        loser = validated_data.pop("loser")
+        score = validated_data.get("score")
+
+        score_instance = Score.objects.create(winner=winner, loser=loser, score=score)
+        return score_instance
 
 
 class LobbySerializer(serializers.ModelSerializer):
