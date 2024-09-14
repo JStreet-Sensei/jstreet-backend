@@ -17,6 +17,7 @@ from django.db.models import Q
 from dj_rest_auth.registration.views import SocialLoginView
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
+from rest_framework.decorators import authentication_classes, permission_classes
 
 
 # Google
@@ -100,12 +101,14 @@ def get_scores(request, user_id):
         limit = 20
     # if user_id is None:
     #     user_id = 0
-    scores = Score.objects.filter(player1=user_id) | Score.objects.filter(player2=user_id)
+    scores = Score.objects.filter(winner=user_id) | Score.objects.filter(loser=user_id)
     scores.order_by("-date")
     serializer = ScoreSerializer(scores, many=True)
     return Response(serializer.data)
 
 
+@authentication_classes([])
+@permission_classes([])
 @api_view(["POST"])
 def create_score(request):
     serializer = ScoreSerializer(data=request.data)
