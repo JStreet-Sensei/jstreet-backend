@@ -11,5 +11,5 @@ data/
 # Static files
 **/static/
 
-#Backend
-backend/backend/__pycache__
+#Cache
+__pycache__

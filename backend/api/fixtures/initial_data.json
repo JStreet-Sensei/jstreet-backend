@@ -1,0 +1,243 @@
+[
+	{
+		"model": "api.content",
+		"pk": 1,
+		"fields": {
+			"japanese_slang": "やばい",
+			"formal_version": "危ない (あぶない)",
+			"english_slang": "Look out!",
+			"description": "This slang can mean something is dangerous or amazing depending on the context. This slang is heavily influenced by the context."
+		}
+	},
+	{
+		"model": "api.content",
+		"pk": 2,
+		"fields": {
+			"japanese_slang": "うざい",
+			"formal_version": "煩わしい (わずらわしい)",
+			"english_slang": "Bothering",
+			"description": "This slang means someone or something is annoying or troublesome."
+		}
+	},
+	{
+		"model": "api.content",
+		"pk": 3,
+		"fields": {
+			"japanese_slang": "ちょい待って！ (ちょいまって！)",
+			"formal_version": "ちょっと待って。 (ちょっとまって。)",
+			"english_slang": "Wait!",
+			"description": "This slang means 'wait a bit' or 'hold on.' The polite way is '少々お待ちください。 (しょうしょうおまちください。)'"
+		}
+	},
+	{
+		"model": "api.content",
+		"pk": 4,
+		"fields": {
+			"japanese_slang": "ぶっちゃけて言うと、... (ぶっちゃけていうと、...)",
+			"formal_version": "正直に言うと、... (しょうじきにいうと、...)",
+			"english_slang": "To be honest,",
+			"description": "This slang is used to say 'to be honest' or 'to speak frankly.' It’s the same as the polite version."
+		}
+	},
+	{
+		"model": "api.content",
+		"pk": 5,
+		"fields": {
+			"japanese_slang": "えぐい ",
+			"formal_version": "ひどい ",
+			"english_slang": "Teribble",
+			"description": "This slang can be used to describe something awful or extreme. There’s no polite equivalent."
+		}
+	},
+	{
+		"model": "api.content",
+		"pk": 6,
+		"fields": {
+			"japanese_slang": "ウケる！ (うける！)",
+			"formal_version": "面白いですね。 (おもしろいですね。)",
+			"english_slang": "Funny",
+			"description": "This slang is used when something is funny. The polite way to say it is 'とても興味深いです。 (とてもきょうみぶかいです。)'"
+		}
+	},
+	{
+		"model": "api.content",
+		"pk": 7,
+		"fields": {
+			"japanese_slang": "調子どう？ (ちょうしどう？)",
+			"formal_version": "最近どうですか？（さいきんどうですか）",
+			"english_slang": "How’s it hanging?",
+			"description": "This is an informal way to ask 'How are you?' in Japanese."
+		}
+	},
+	{
+		"model": "api.content",
+		"pk": 8,
+		"fields": {
+			"japanese_slang": "ごめん",
+			"formal_version": "すみません。",
+			"english_slang": "Slangy Apologies",
+			"description": "This is a shorter form of ごめんなさい (I’m sorry). You can use this slang among friends. Your boss can use this, but you can't use when you'll talk with the boss. Really, if you want to apologize properly, you should say ごめんなさい or すみません. The most sincerely and often used version is 申し訳ございません or 申し訳ないです. The highest version is 誠に申し訳ございませんでした. This version is used in press conference."
+		}
+	},
+	{
+		"model": "api.content",
+		"pk": 9,
+		"fields": {
+			"japanese_slang": "奴ら (やつら)",
+			"formal_version": "彼ら（かれら）",
+			"english_slang": "Very Informal 'Them'",
+			"description": "This term is a very informal way to refer to 'them' in Japanese."
+		}
+	},
+	{
+		"model": "api.content",
+		"pk": 10,
+		"fields": {
+			"japanese_slang": "一足す一は？ (いちたすいちは？)",
+			"formal_version": "撮ります（とります）",
+			"english_slang": "Say Cheese?",
+			"description": "This phrase is used when taking a photo, similar to saying 'Cheese!' in English."
+		}
+	},
+	{
+		"model": "api.content",
+		"pk": 11,
+		"fields": {
+			"japanese_slang": "やっとくよ",
+			"formal_version": "対応しておきます",
+			"english_slang": "I'll do it",
+			"description": "This slang is used in mainly work or discussion."
+		}
+	},
+	{
+		"model": "api.content",
+		"pk": 12,
+		"fields": {
+			"japanese_slang": "はじめまして！",
+			"formal_version": "はじめまして。よろしくお願いします。",
+			"english_slang": "Hello!",
+			"description": "This is used in a first meeting to show your politeness and familiarity. The important point is that you should deliver your attitude to the other one with body language."
+		}
+	},
+	{
+		"model": "api.content",
+		"pk": 13,
+		"fields": {
+			"japanese_slang": "いくつ？",
+			"formal_version": "おいくつですか？",
+			"english_slang": "How old are you?",
+			"description": "いくつ is used to count something. When you face the other one and say いくつ, it means you're asking about the other's age. Generally speaking, Japanese don't often ask the age but they care it seriously."
+		}
+	},
+	{
+		"model": "api.content",
+		"pk": 14,
+		"fields": {
+			"japanese_slang": "めっちゃいい！",
+			"formal_version": "とてもいいですね",
+			"english_slang": "So cool",
+			"description": "めっちゃ is originally from Kansai destrict. Now mainly younger people use that everywhere in Japan."
+		}
+	},
+	{
+		"model": "api.content",
+		"pk": 15,
+		"fields": {
+			"japanese_slang": "わからん",
+			"formal_version": "わかりません",
+			"english_slang": "I don't know.",
+			"description": "Probably わからん is from Kansai destrict, but this doesn't have strong nuance that this word from Kansai. This is a little rough, you can't use in a formal meeting or official conference. Of course you can't use when you talk with your boss."
+		}
+	},
+	{
+		"model": "api.wordslearned",
+		"pk": 1,
+		"fields": {
+			"user": 5,
+			"content": 1,
+			"created_at": "2024-09-13T05:35:11.381Z"
+		}
+	},
+	{
+		"model": "api.wordslearned",
+		"pk": 2,
+		"fields": {
+			"user": 4,
+			"content": 1,
+			"created_at": "2024-09-13T05:35:11.381Z"
+		}
+	},
+	{
+		"model": "api.wordslearned",
+		"pk": 3,
+		"fields": {
+			"user": 4,
+			"content": 2,
+			"created_at": "2024-09-13T05:35:11.381Z"
+		}
+	},
+	{
+		"model": "api.wordslearned",
+		"pk": 4,
+		"fields": {
+			"user": 4,
+			"content": 3,
+			"created_at": "2024-09-13T05:35:11.381Z"
+		}
+	},
+	{
+		"model": "api.wordslearned",
+		"pk": 5,
+		"fields": {
+			"user": 4,
+			"content": 4,
+			"created_at": "2024-09-13T05:35:11.381Z"
+		}
+	},
+	{
+		"model": "api.wordslearned",
+		"pk": 6,
+		"fields": {
+			"user": 4,
+			"content": 5,
+			"created_at": "2024-09-13T05:35:11.381Z"
+		}
+	},
+	{
+		"model": "api.wordslearned",
+		"pk": 7,
+		"fields": {
+			"user": 4,
+			"content": 6,
+			"created_at": "2024-09-13T05:35:11.381Z"
+		}
+	},
+	{
+		"model": "api.wordslearned",
+		"pk": 8,
+		"fields": {
+			"user": 4,
+			"content": 7,
+			"created_at": "2024-09-13T05:35:11.381Z"
+		}
+	},
+	{
+		"model": "api.wordslearned",
+		"pk": 9,
+		"fields": {
+			"user": 4,
+			"content": 8,
+			"created_at": "2024-09-13T05:35:11.381Z"
+		}
+	},
+	{
+		"model": "api.wordslearned",
+		"pk": 10,
+		"fields": {
+			"user": 4,
+			"content": 9,
+			"created_at": "2024-09-13T05:35:11.381Z"
+		}
+	},
+	{ "model": "api.gamename", "pk": 1, "fields": { "name": "Memo Game" } }
+]
