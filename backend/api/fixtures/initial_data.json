@@ -4,7 +4,7 @@
 		"pk": 1,
 		"fields": {
 			"japanese_slang": "やばい",
-			"formal_version": "危ない (あぶない)",
+			"formal_version": "危ない",
 			"english_slang": "Look out!",
 			"description": "This slang can mean something is dangerous or amazing depending on the context. This slang is heavily influenced by the context."
 		}
@@ -14,7 +14,7 @@
 		"pk": 2,
 		"fields": {
 			"japanese_slang": "うざい",
-			"formal_version": "煩わしい (わずらわしい)",
+			"formal_version": "煩わしい",
 			"english_slang": "Bothering",
 			"description": "This slang means someone or something is annoying or troublesome."
 		}
@@ -23,8 +23,8 @@
 		"model": "api.content",
 		"pk": 3,
 		"fields": {
-			"japanese_slang": "ちょい待って！ (ちょいまって！)",
-			"formal_version": "ちょっと待って。 (ちょっとまって。)",
+			"japanese_slang": "ちょい待って！",
+			"formal_version": "ちょっと待って。",
 			"english_slang": "Wait!",
 			"description": "This slang means 'wait a bit' or 'hold on.' The polite way is '少々お待ちください。 (しょうしょうおまちください。)'"
 		}
@@ -33,8 +33,8 @@
 		"model": "api.content",
 		"pk": 4,
 		"fields": {
-			"japanese_slang": "ぶっちゃけて言うと、... (ぶっちゃけていうと、...)",
-			"formal_version": "正直に言うと、... (しょうじきにいうと、...)",
+			"japanese_slang": "ぶっちゃけて言うと、...",
+			"formal_version": "正直に言うと、... ",
 			"english_slang": "To be honest,",
 			"description": "This slang is used to say 'to be honest' or 'to speak frankly.' It’s the same as the polite version."
 		}
@@ -53,8 +53,8 @@
 		"model": "api.content",
 		"pk": 6,
 		"fields": {
-			"japanese_slang": "ウケる！ (うける！)",
-			"formal_version": "面白いですね。 (おもしろいですね。)",
+			"japanese_slang": "ウケる！",
+			"formal_version": "面白いですね",
 			"english_slang": "Funny",
 			"description": "This slang is used when something is funny. The polite way to say it is 'とても興味深いです。 (とてもきょうみぶかいです。)'"
 		}
@@ -63,8 +63,8 @@
 		"model": "api.content",
 		"pk": 7,
 		"fields": {
-			"japanese_slang": "調子どう？ (ちょうしどう？)",
-			"formal_version": "最近どうですか？（さいきんどうですか）",
+			"japanese_slang": "調子どう？",
+			"formal_version": "最近どうですか？",
 			"english_slang": "How’s it hanging?",
 			"description": "This is an informal way to ask 'How are you?' in Japanese."
 		}
@@ -83,8 +83,8 @@
 		"model": "api.content",
 		"pk": 9,
 		"fields": {
-			"japanese_slang": "奴ら (やつら)",
-			"formal_version": "彼ら（かれら）",
+			"japanese_slang": "奴ら",
+			"formal_version": "彼ら",
 			"english_slang": "Very Informal 'Them'",
 			"description": "This term is a very informal way to refer to 'them' in Japanese."
 		}
@@ -93,8 +93,8 @@
 		"model": "api.content",
 		"pk": 10,
 		"fields": {
-			"japanese_slang": "一足す一は？ (いちたすいちは？)",
-			"formal_version": "撮ります（とります）",
+			"japanese_slang": "一足す一は？",
+			"formal_version": "撮ります",
 			"english_slang": "Say Cheese?",
 			"description": "This phrase is used when taking a photo, similar to saying 'Cheese!' in English."
 		}
@@ -147,6 +147,76 @@
 			"formal_version": "わかりません",
 			"english_slang": "I don't know.",
 			"description": "Probably わからん is from Kansai destrict, but this doesn't have strong nuance that this word from Kansai. This is a little rough, you can't use in a formal meeting or official conference. Of course you can't use when you talk with your boss."
+		}
+	},
+	{
+		"model": "api.content",
+		"pk": 16,
+		"fields": {
+			"japanese_slang": "またよろしく",
+			"formal_version": "何かあればよろしくお願いします",
+			"english_slang": "Let's keep in touch!",
+			"description": "This phrase is used at the end of a meeting to express a desire to stay connected and meet again in the future."
+		}
+	},
+	{
+		"model": "api.content",
+		"pk": 17,
+		"fields": {
+			"japanese_slang": "これ頼む",
+			"formal_version": "お願いします",
+			"english_slang": "Can you do this?",
+			"description": "Among friends, it's okay to use this phrase casually. Otherwise, a bossy superior might use this with a team member."
+		}
+	},
+	{
+		"model": "api.content",
+		"pk": 18,
+		"fields": {
+			"japanese_slang": "ごめん、なんて言った？",
+			"formal_version": "すみません、もう一度お願いします。",
+			"english_slang": "Sorry?",
+			"description": "Using なんて alone can sound a bit rough. Adding polite cushion words softens the tone."
+		}
+	},
+	{
+		"model": "api.content",
+		"pk": 19,
+		"fields": {
+			"japanese_slang": "いくら？",
+			"formal_version": "ちなみに、お値段はどれくらいになるでしょうか？",
+			"english_slang": "How much?",
+			"description": "When talking to shop staff, you should say すみません、いくらでしょうか？ This phrase is casual and should be used only with friends, not with people you're meeting for the first time."
+		}
+	},
+	{
+		"model": "api.content",
+		"pk": 20,
+		"fields": {
+			"japanese_slang": "なんで？",
+			"formal_version": "理由は何ですか？",
+			"english_slang": "Why?",
+			"description": "The tone is crucial. Use a soft tone with this phrase if you want to avoid sounding confrontational."
+		}
+	},
+	{
+		"model": "api.content",
+		"pk": 21,
+		"fields": {
+			"japanese_slang": "モテそう",
+			"formal_version": "さわやかで人当たりがいいですね",
+			"english_slang": "He seems popular.",
+			"description": "さわやか is a very Japanese concept, referring to a man who is cool, friendly, youthful, and reliable—essentially a decent, well-rounded person"
+		}
+	},
+	{
+		"model": "api.content",
+		"pk": 22,
+		"fields": {
+			"japanese_slang": "あいつ腹立つなあ",
+			"formal_version": "あの人とは相性が悪いです",
+			"english_slang": "He's annoying",
+			"description": "The meaning depends on the context. It can be used jokingly or seriously, depending on the situation."
 		}
 	},
 	{
@@ -239,5 +309,11 @@
 			"created_at": "2024-09-13T05:35:11.381Z"
 		}
 	},
-	{ "model": "api.gamename", "pk": 1, "fields": { "name": "Memo Game" } }
+	{
+		"model": "api.gamename",
+		"pk": 1,
+		"fields": {
+			"name": "Memo Game"
+		}
+	}
 ]
