@@ -226,7 +226,7 @@
             "japanese_slang": "後でやるわ",
             "formal_version": "後ろ倒しにします",
             "english_slang": "I'll do it later.",
-            "description": "When you use formal one, you should tell the reason to postpone."
+            "description": "When you use the formal one, it's important to provide a reason for the postponement."
         }
     },
     {
@@ -236,7 +236,7 @@
             "japanese_slang": "は？",
             "formal_version": "ちょっと信じられない",
             "english_slang": "What?",
-            "description": "The key is raising the pitch at the end. That will stress your surprising."
+            "description": "The key is to raise the pitch at the end. emphasizing your surprise or disbelief."
         }
     },
     {
@@ -246,7 +246,7 @@
             "japanese_slang": "あっつ",
             "formal_version": "今日も暑いですね",
             "english_slang": "So hot.",
-            "description": "The other person will reply 暑いねー or 暑いよな."
+            "description": "The usual response would be something like '暑いねー' or '暑いよな,' agreeing with the heat."
         }
     }
 ]
