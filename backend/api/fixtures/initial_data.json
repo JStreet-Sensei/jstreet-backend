@@ -4,7 +4,7 @@
 		"pk": 1,
 		"fields": {
 			"japanese_slang": "やばい",
-			"formal_version": "危ない (あぶない)",
+			"formal_version": "危ない",
 			"english_slang": "Look out!",
 			"description": "This slang can mean something is dangerous or amazing depending on the context. This slang is heavily influenced by the context."
 		}
@@ -14,7 +14,7 @@
 		"pk": 2,
 		"fields": {
 			"japanese_slang": "うざい",
-			"formal_version": "煩わしい (わずらわしい)",
+			"formal_version": "煩わしい",
 			"english_slang": "Bothering",
 			"description": "This slang means someone or something is annoying or troublesome."
 		}
@@ -23,8 +23,8 @@
 		"model": "api.content",
 		"pk": 3,
 		"fields": {
-			"japanese_slang": "ちょい待って！ (ちょいまって！)",
-			"formal_version": "ちょっと待って。 (ちょっとまって。)",
+			"japanese_slang": "ちょい待って！",
+			"formal_version": "ちょっと待って。",
 			"english_slang": "Wait!",
 			"description": "This slang means 'wait a bit' or 'hold on.' The polite way is '少々お待ちください。 (しょうしょうおまちください。)'"
 		}
@@ -33,8 +33,8 @@
 		"model": "api.content",
 		"pk": 4,
 		"fields": {
-			"japanese_slang": "ぶっちゃけて言うと、... (ぶっちゃけていうと、...)",
-			"formal_version": "正直に言うと、... (しょうじきにいうと、...)",
+			"japanese_slang": "ぶっちゃけて言うと、...",
+			"formal_version": "正直に言うと、... ",
 			"english_slang": "To be honest,",
 			"description": "This slang is used to say 'to be honest' or 'to speak frankly.' It’s the same as the polite version."
 		}
@@ -53,8 +53,8 @@
 		"model": "api.content",
 		"pk": 6,
 		"fields": {
-			"japanese_slang": "ウケる！ (うける！)",
-			"formal_version": "面白いですね。 (おもしろいですね。)",
+			"japanese_slang": "ウケる！",
+			"formal_version": "面白いですね",
 			"english_slang": "Funny",
 			"description": "This slang is used when something is funny. The polite way to say it is 'とても興味深いです。 (とてもきょうみぶかいです。)'"
 		}
@@ -63,8 +63,8 @@
 		"model": "api.content",
 		"pk": 7,
 		"fields": {
-			"japanese_slang": "調子どう？ (ちょうしどう？)",
-			"formal_version": "最近どうですか？（さいきんどうですか）",
+			"japanese_slang": "調子どう？",
+			"formal_version": "最近どうですか？",
 			"english_slang": "How’s it hanging?",
 			"description": "This is an informal way to ask 'How are you?' in Japanese."
 		}
@@ -83,8 +83,8 @@
 		"model": "api.content",
 		"pk": 9,
 		"fields": {
-			"japanese_slang": "奴ら (やつら)",
-			"formal_version": "彼ら（かれら）",
+			"japanese_slang": "奴ら",
+			"formal_version": "彼ら",
 			"english_slang": "Very Informal 'Them'",
 			"description": "This term is a very informal way to refer to 'them' in Japanese."
 		}
@@ -93,8 +93,8 @@
 		"model": "api.content",
 		"pk": 10,
 		"fields": {
-			"japanese_slang": "一足す一は？ (いちたすいちは？)",
-			"formal_version": "撮ります（とります）",
+			"japanese_slang": "一足す一は？",
+			"formal_version": "撮ります",
 			"english_slang": "Say Cheese?",
 			"description": "This phrase is used when taking a photo, similar to saying 'Cheese!' in English."
 		}
@@ -239,5 +239,11 @@
 			"created_at": "2024-09-13T05:35:11.381Z"
 		}
 	},
-	{ "model": "api.gamename", "pk": 1, "fields": { "name": "Memo Game" } }
+	{
+		"model": "api.gamename",
+		"pk": 1,
+		"fields": {
+			"name": "Memo Game"
+		}
+	}
 ]
