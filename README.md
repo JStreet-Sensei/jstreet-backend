@@ -8,9 +8,9 @@
     ```
 
          projects
-         ├───nihongo-jouzu-backend
+         ├───jstreet-backend
          │   └───backend
-         └───nihongo-jouzu-frontend
+         └───jstreet-frontend
              └───package.json
 
 
